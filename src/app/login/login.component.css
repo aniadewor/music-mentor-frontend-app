@@ -1,0 +1,75 @@
+/* styles.css */
+body {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #004174, #0062B2);
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    display: flex;
+    width: 800px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  .left {
+    flex: 1;
+    background: #004174;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .left h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+  }
+  .right {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h2 {
+    margin-bottom: 20px;
+    color: #0062B2;
+    font-family: 'Montserrat', sans-serif;
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #68A3E0;
+    border-radius: 5px;
+  }
+  .btn {
+    padding: 10px;
+    width: 100%;
+    background: #297AD0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .btn:hover {
+    background: #68A3E0;
+  }
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #297AD0;
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: underline;
+    font-family: 'Nunito', sans-serif;
+  }

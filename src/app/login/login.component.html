@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="left">
+        <h1>Music Mentor</h1>
+        <p>Learn and master music with ease.</p>
+    </div>
+    <div class="right">
+        <div *ngIf="isLoginForm" id="login-form" class="form-container active">
+            <h2>Login</h2>
+            <input type="email" placeholder="Your Email" required>
+            <input type="password" placeholder="Your Password" required>
+            <button class="btn">Sign In</button>
+            <button class="toggle-btn" (click)="toggleForms()">Don't have an account? Register</button>
+        </div>
+        <div *ngIf="!isLoginForm" id="register-form" class="form-container">
+            <h2>Register</h2>
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="password" placeholder="Create Password" required>
+            <button class="btn">Create Account</button>
+            <button class="toggle-btn" (click)="toggleForms()">Already have an account? Login</button>
+        </div>
+    </div>
+</div>
