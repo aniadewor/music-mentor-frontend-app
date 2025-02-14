@@ -1,75 +1,192 @@
 /* styles.css */
-body {
-    font-family: 'Nunito', sans-serif;
-    display: flex;
+
+/* Globalne ustawienia */
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0062B2;
+  font-family: 'Nunito', sans-serif;
+  overflow: hidden;
+}
+
+/* Główne okno */
+.container {
+  display: flex;
+  width: 900px;
+  max-width: 90%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sekcja lewa */
+.left {
+  flex: 1;
+  background: #004174;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.left h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+/* Sekcja prawa */
+.right {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Nagłówki */
+h2 {
+  margin-bottom: 20px;
+  color: #0062B2;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Style dla inputów i select */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #68A3E0;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Placeholdery */
+input::placeholder, select::placeholder {
+  color: #888;
+  font-size: 14px;
+}
+
+/* Style dla przycisków */
+.btn, .btn-register {
+  padding: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+}
+
+/* Efekt hover i kliknięcia */
+.btn:hover, .btn-register:hover {
+  background: linear-gradient(135deg, #68A3E0, #005BBB);
+}
+
+.btn:active, .btn-register:active {
+  transform: scale(0.98);
+}
+
+/* Przycisk przełączania między rejestracją a logowaniem */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #297AD0;
+  cursor: pointer;
+  margin-top: 15px;
+  text-decoration: underline;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Dostosowanie układu dla lepszego wyglądu */
+select {
+  appearance: none;
+  width: 100%; /* Dopasowanie szerokości do inputów */
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Styl przycisku rejestracji */
+.btn-register {
+  background: linear-gradient(135deg, #004174, #0062B2);
+}
+.btn-register:hover {
+  background: linear-gradient(135deg, #005BBB, #297AD0);
+}
+
+/* Media Queries - Responsywność */
+@media (max-width: 1024px) { /* Tablety */
+  .container {
+    width: 90%;
+    flex-direction: column;
+  }
+  .left {
+    padding: 20px;
+  }
+  .right {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) { /* Telefony */
+  html, body {
+    width: 100vw;
     height: 100vh;
+    overflow: hidden;
     margin: 0;
-    background:  #0062B2;
+    padding: 0;
+    display: flex;
     align-items: center;
     justify-content: center;
   }
   .container {
-    display: flex;
-    width: 800px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    margin: auto;
+    padding: 10px;
+    box-sizing: border-box;
   }
   .left {
-    flex: 1;
-    background: #004174;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    width: 100%;
+    text-align: center;
     padding: 20px;
   }
-  .left h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    font-weight: 700;
-  }
   .right {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 100%;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 28px;
+    text-align: center;
   }
   h2 {
-    margin-bottom: 20px;
-    color: #0062B2;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
   }
-  input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #68A3E0;
-    border-radius: 5px;
+  input, select, .btn, .btn-register {
+    font-size: 14px;
   }
-  .btn {
-    padding: 10px;
-    width: 100%;
-    background: #297AD0;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-family: 'Montserrat', sans-serif;
-  }
-  .btn:hover {
-    background: #68A3E0;
-  }
-  .toggle-btn {
-    background: none;
-    border: none;
-    color: #297AD0;
-    cursor: pointer;
-    margin-top: 10px;
-    text-decoration: underline;
-    font-family: 'Nunito', sans-serif;
-  }
+}
