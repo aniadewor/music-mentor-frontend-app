@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { QuizViewComponent } from './quiz-view/quiz-view.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +17,8 @@ import { QuizViewComponent } from './quiz-view/quiz-view.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideHttpClient(withFetch())
@@ -25,3 +26,5 @@ import { QuizViewComponent } from './quiz-view/quiz-view.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

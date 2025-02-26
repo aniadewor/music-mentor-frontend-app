@@ -1,31 +1,66 @@
 <body>
   <div class="container">
-  <div class="left">
+    <div class="left">
       <h1>Music Mentor</h1>
       <p>Learn and master music with ease.</p>
-  </div>
-  <div class="right">
-      <div *ngIf="isLoginForm" id="login-form" class="form-container active">
+    </div>
+    <div class="right">
+      <div class="form-wrapper">
+        <!-- FORMULARZ LOGOWANIA -->
+        <form *ngIf="isLoginForm" [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form-container">
           <h2>Login</h2>
-          <input type="email" placeholder="Your Email" [(ngModel)]="user.email" required>
-          <input type="password" placeholder="Your Password" [(ngModel)]="user.password" required>
-          <button class="btn"(click)="onLogin()">Sign In</button>
-          <button class="toggle-btn" (click)="toggleForms()">Don't have an account? Register</button>
+
+          <input type="email" placeholder="Your Email" formControlName="email" />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+            Invalid email!
+          </div>
+
+          <input type="password" placeholder="Your Password" formControlName="password" />
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+            Password must be at least 8 characters!
+          </div>
+
+          <button class="btn" [disabled]="loginForm.invalid">Sign In</button>
+          <button type="button" class="toggle-btn" (click)="toggleForms()">Don't have an account? Register</button>
+        </form>
+
+        <!-- FORMULARZ REJESTRACJI -->
+        <form *ngIf="!isLoginForm" [formGroup]="registerForm" (ngSubmit)="onRegister()" class="form-container">
+          <h2>Register</h2>
+
+          <input type="text" placeholder="First Name" formControlName="name" />
+          <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error">
+            Only letters are allowed!
+          </div>
+
+          <input type="text" placeholder="Last Name" formControlName="lastName" />
+          <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="error">
+            Only letters are allowed!
+          </div>
+
+          <input type="email" placeholder="Email" formControlName="email" />
+          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
+            Invalid email!
+          </div>
+
+          <input type="password" placeholder="Password" formControlName="password" />
+          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
+            Password must contain 8 characters, 1 uppercase letter, 1 number, and 1 special character!
+          </div>
+
+          <select formControlName="role">
+            <option value="" disabled selected>I am a...</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+          <div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="error">
+            Please select a role!
+          </div>
+
+          <button class="btn-register" [disabled]="registerForm.invalid">Sign Up</button>
+          <button type="button" class="toggle-btn" (click)="toggleForms()">Already have an account? Login</button>
+        </form>
       </div>
-      <div *ngIf="!isLoginForm" id="register-form" class="form-container">
-        <h2>Register</h2>
-        <input type="text" placeholder="First Name" [(ngModel)]="user.name" required />
-        <input type="text" placeholder="Last Name" [(ngModel)]="user.lastName" required />
-        <input type="email" placeholder="Email" [(ngModel)]="user.email" required />
-        <input type="password" placeholder="Password" [(ngModel)]="user.password" required />
-        <select required>
-          <option value="" disabled selected>I am a...</option>
-          <option value="student" [(ngModel)]="user.role">Student</option>
-          <option value="teacher" [(ngModel)]="user.role">Teacher</option>
-        </select>
-        <button class="btn-register" (click)="onRegister()">Sign Up</button>
-        <button class="toggle-btn" (click)="toggleForms()">Already have an account? Login</button>
-      </div>
+    </div>
   </div>
-</div>
 </body>
