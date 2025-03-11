@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserServiceService } from '../service/user-service.service';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,8 @@ export class LoginComponent {
   isLoginForm = true;
   loginForm: FormGroup;
   registerForm: FormGroup;
+
+  user: User= new User()
 
   constructor(private fb: FormBuilder, private userService: UserServiceService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -38,8 +41,8 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       this.userService.loginUser(
-        this.loginForm.value.email,
-        this.loginForm.value.password
+      this.user.email,
+      this.user.password
       ).subscribe(response => {
         console.log('Logging in:', response);
         alert("Login Successful!");
@@ -50,7 +53,7 @@ export class LoginComponent {
 
   onRegister() {
     if (this.registerForm.valid) {
-      this.userService.registerUser(this.registerForm.value).subscribe(response => {
+      this.userService.registerUser(this.user).subscribe(response => {
         console.log('Registering:', response);
         alert("Registration Successful!");
         this.toggleForms(); // Przełącz na login po rejestracji

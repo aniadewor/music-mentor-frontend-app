@@ -7,11 +7,13 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { FormsModule } from '@angular/forms';
 import { QuizViewComponent } from './quiz-view/quiz-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QuizAddComponent } from './quiz-add/quiz-add.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    QuizViewComponent
+    QuizViewComponent,
+    QuizAddComponent
   ],
   imports: [
     BrowserModule,
