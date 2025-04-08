@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserServiceService } from '../service/user-service.service';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
+import { Role } from '../models/role.enum';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class LoginComponent {
   registerForm: FormGroup;
 
   user: User= new User()
+
+  Role = Role
 
   constructor(private fb: FormBuilder, private userService: UserServiceService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -53,8 +56,11 @@ export class LoginComponent {
 
   onRegister() {
     if (this.registerForm.valid) {
-      this.userService.registerUser(this.user).subscribe(response => {
+      const user = this.registerForm.value;
+      console.log(user);
+      this.userService.registerUser(user).subscribe(response => {
         console.log('Registering:', response);
+        console.log(user);
         alert("Registration Successful!");
         this.toggleForms(); // Przełącz na login po rejestracji
       });

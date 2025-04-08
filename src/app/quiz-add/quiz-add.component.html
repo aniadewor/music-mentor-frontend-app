@@ -1,1 +1,47 @@
-<p>quiz-add works!</p>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>Kreator Quizu</h1>
+    </div>
+
+    <div class="right">
+      <h2>Tworzenie Quizu</h2>
+      <div class="question-container">
+        <label for="quizTitle">Nazwa quizu:</label>
+        <input type="text" id="quizTitle" [(ngModel)]="quizTitle" name="quizTitle" required>
+        <div *ngIf="showValidationMessage && quizTitle.trim() === ''" class="error-message">
+          Pole nazwy quizu jest wymagane.
+        </div>
+
+        <label for="quizDescription">Opis quizu:</label>
+        <textarea id="quizDescription" [(ngModel)]="quizDescription" name="quizDescription" required></textarea>
+        <div *ngIf="showValidationMessage && quizDescription.trim() === ''" class="error-message">
+          Pole opisu quizu jest wymagane.
+        </div>
+
+        <button type="button" class="btn save-quiz" (click)="saveQuiz()">Zapisz quiz</button>
+
+
+        <!-- Sekcja pytań – widoczna tylko po zapisaniu quizu -->
+        <div *ngIf="quizSaved">
+          <div id="questionsContainer">
+            <div *ngFor="let question of questions; let i = index" class="question">
+              <label>Pytanie {{ i + 1 }}:</label>
+              <input type="text" [(ngModel)]="question.text" name="question{{i}}Text" required>
+
+              <label>Opcje odpowiedzi:</label>
+              <div class="options">
+                <div class="option-row" *ngFor="let option of question.options; let j = index">
+                  <input type="radio" name="correctAnswer{{ i }}" [(ngModel)]="question.correctAnswer" [value]="j" [ngModelOptions]="{ standalone: true }">
+                  <input type="text" [(ngModel)]="question.options[j]" [ngModelOptions]="{ standalone: true }" name="option{{i}}_{{j}}" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn" (click)="addQuestion()" [disabled]="!quizSaved">Dodaj pytanie</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

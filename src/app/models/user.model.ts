@@ -10,6 +10,6 @@ export class User {
   this.password='',
   this.name= '',
   this.lastName='',
-  this.role= Role.STUDENT;
+  this.role=Role.STUDENT;
 }
 }

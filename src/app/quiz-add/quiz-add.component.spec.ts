@@ -11,7 +11,7 @@ describe('QuizAddComponent', () => {
       declarations: [QuizAddComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(QuizAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
