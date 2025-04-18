@@ -8,14 +8,14 @@
       <h2>Tworzenie Quizu</h2>
       <div class="question-container">
         <label for="quizTitle">Nazwa quizu:</label>
-        <input type="text" id="quizTitle" [(ngModel)]="quizTitle" name="quizTitle" required>
-        <div *ngIf="showValidationMessage && quizTitle.trim() === ''" class="error-message">
+        <input type="text" id="quizTitle" [(ngModel)]="quiz.title" name="quiz.title" required>
+        <div *ngIf="showValidationMessage && quiz.title === ''" class="error-message">
           Pole nazwy quizu jest wymagane.
         </div>
 
         <label for="quizDescription">Opis quizu:</label>
-        <textarea id="quizDescription" [(ngModel)]="quizDescription" name="quizDescription" required></textarea>
-        <div *ngIf="showValidationMessage && quizDescription.trim() === ''" class="error-message">
+        <textarea id="quizDescription" [(ngModel)]="quiz.description" name="quizDescription" required></textarea>
+        <div *ngIf="showValidationMessage && quiz.description === ''" class="error-message">
           Pole opisu quizu jest wymagane.
         </div>
 
@@ -27,14 +27,19 @@
           <div id="questionsContainer">
             <div *ngFor="let question of questions; let i = index" class="question">
               <label>Pytanie {{ i + 1 }}:</label>
-              <input type="text" [(ngModel)]="question.text" name="question{{i}}Text" required>
+              <input type="text" [(ngModel)]="question.questionTitle" name="question{{i}}Text" required>
+              <label>Punkty</label>
+              <input type="number"[(ngModel)]="question.score">
+
 
               <label>Opcje odpowiedzi:</label>
               <div class="options">
-                <div class="option-row" *ngFor="let option of question.options; let j = index">
-                  <input type="radio" name="correctAnswer{{ i }}" [(ngModel)]="question.correctAnswer" [value]="j" [ngModelOptions]="{ standalone: true }">
-                  <input type="text" [(ngModel)]="question.options[j]" [ngModelOptions]="{ standalone: true }" name="option{{i}}_{{j}}" required>
-                </div>
+                <div class="option-row">
+                  <input type="radio" name="Answer1"[(ngModel)]="question.answer1">
+                  <input type="radio" name="Answer2"[(ngModel)]="question.answer2">
+                  <input type="radio" name="Answer3"[(ngModel)]="question.answer3">
+                  <input type="radio" name="Answer4"[(ngModel)]="question.answer4">
+
               </div>
             </div>
           </div>
@@ -44,4 +49,5 @@
       </div>
     </div>
   </div>
+</div>
 </body>

@@ -1,0 +1,3 @@
+export enum QuestionType{
+  SINGLE_CHOICE, MULTIPLE_CHOICE, TEXT_REPLY
+}
