@@ -9,8 +9,9 @@ import { Role } from '../models/role.enum';
 })
 export class QuizViewComponent implements OnInit {
   user: User = new User();
+  Role = Role;
 
   ngOnInit() {
-    // this.user.role = Role.TEACHER;
+     this.user.role = Role.TEACHER;
   }
 }

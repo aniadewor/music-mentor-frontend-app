@@ -53,9 +53,6 @@
             <option [(ngModel)]="Role.STUDENT">Uczniem</option>
             <option [(ngModel)]="Role.TEACHER">Nauczycielem</option>
           </select>
-          <!-- <option value="" disabled selected>I am a...</option>
-           <option value="student" [(ngModel)]="user.role">Student</option>
-           <option value="teacher" [(ngModel)]="user.role">Teacher</option> -->
           <div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="error">
             Wybierz rolę!
           </div>

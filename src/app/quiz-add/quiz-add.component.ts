@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { Question } from '../models/Question.model';
 import { Quiz } from '../models/quiz.model';
 import { QuizServiceService } from '../service/quiz-service.service';
-import { Router } from 'express';
+import { Router } from '@angular/router';
+import { Question } from '../models/question.model';
 
 @Component({
   selector: 'app-quiz-add',
   templateUrl: './quiz-add.component.html',
-  styleUrls: ['./quiz-add.component.css']
+  styleUrls: ['./quiz-add.component.css'],
 })
 export class QuizAddComponent {
   question:Question={};
@@ -32,6 +32,7 @@ constructor(private quizService: QuizServiceService, private router:Router){
   }
 
   saveQuiz() {
+    console.log(this.quiz)
     this.quizService.addQuiz(this.quiz).subscribe(response => {
       console.log('Add Quiz',response)
     })
@@ -42,15 +43,6 @@ constructor(private quizService: QuizServiceService, private router:Router){
 
     this.showValidationMessage = false;
     this.quizSaved = true;
-
-    const quizData = {
-      title: this.quiz.title,
-      description: this.quiz.description
-    };
-
-
-    console.log('Quiz zapisany:', quizData);
-    alert('Quiz zapisany!');
   }
 
 }

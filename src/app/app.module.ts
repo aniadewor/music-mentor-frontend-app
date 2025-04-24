@@ -24,7 +24,6 @@ import { QuizAddComponent } from './quiz-add/quiz-add.component';
     ReactiveFormsModule
   ],
   providers: [
-    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

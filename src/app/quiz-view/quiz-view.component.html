@@ -15,7 +15,7 @@
       </nav>
   </aside>
 
-  <main class="main-content" *ngIf="user.role == 'TEACHER'">
+  <main class="main-content" *ngIf="user.role === Role.TEACHER">
       <header>
           <h1>Witaj, Nauczycielu!</h1>
           <p>Zarządzaj lekcjami, quizami i monitoruj postępy uczniów.</p>
@@ -36,7 +36,7 @@
       </section>
   </main>
 
-  <main class="main-content" *ngIf="user.role == 'STUDENT'">
+  <main class="main-content" *ngIf="user.role === Role.STUDENT">
     <header>
       <h1>Witaj, Uczniu!</h1>
       <p>Rozwijaj swoją wiedzę, rozwiązuj quizy i przeglądaj kursy.</p>
