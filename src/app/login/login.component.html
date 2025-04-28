@@ -7,57 +7,57 @@
     <div class="right">
       <div class="form-wrapper">
         <!-- FORMULARZ LOGOWANIA -->
-        <form *ngIf="isLoginForm" [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form-container">
+        <form *ngIf="isLoginForm" #loginForm="ngForm" (ngSubmit)="onLogin()" class="form-container">
           <h2>Logowanie</h2>
 
-          <input type="email" placeholder="Twój e-mail" formControlName="email" />
-          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+          <input type="email" placeholder="Twój e-mail" name="userEmail" [(ngModel)]="login.email" required email />
+          <div *ngIf="loginForm.submitted && loginForm.form.get('email')?.invalid" class="error">
             Nieprawidłowy e-mail!
           </div>
 
-          <input type="password" placeholder="Twoje hasło" formControlName="password" />
-          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+          <input type="password" placeholder="Twoje hasło" name="userPassword" [(ngModel)]="login.password" required minlength="8" />
+          <div *ngIf="loginForm.submitted && loginForm.form.get('password')?.invalid" class="error">
             Hasło musi mieć co najmniej 8 znaków!
           </div>
 
-          <button class="btn" [disabled]="loginForm.invalid">Zaloguj się</button>
+          <button class="btn" [disabled]="!loginForm.valid">Zaloguj się</button>
           <button type="button" class="toggle-btn" (click)="toggleForms()">Nie masz konta? Zarejestruj się</button>
         </form>
 
         <!-- FORMULARZ REJESTRACJI -->
-        <form *ngIf="!isLoginForm" [formGroup]="registerForm" (ngSubmit)="onRegister()" class="form-container">
+        <form *ngIf="!isLoginForm" #registerForm="ngForm" (ngSubmit)="onRegister()" class="form-container">
           <h2>Rejestracja</h2>
 
-          <input type="text" placeholder="Imię" formControlName="name" />
-          <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error">
+          <input type="text" placeholder="Imię" name="name" [(ngModel)]="register.name" required pattern="^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+$" />
+          <div *ngIf="registerForm.submitted && registerForm.form.get('name')?.invalid" class="error">
             Dozwolone są tylko litery!
           </div>
 
-          <input type="text" placeholder="Nazwisko" formControlName="lastName" />
-          <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="error">
+          <input type="text" placeholder="Nazwisko" name="lastName" [(ngModel)]="register.lastName" required pattern="^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+$" />
+          <div *ngIf="registerForm.submitted && registerForm.form.get('lastName')?.invalid" class="error">
             Dozwolone są tylko litery!
           </div>
 
-          <input type="email" placeholder="E-mail" formControlName="email" />
-          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
+          <input type="email" placeholder="E-mail" name="email" [(ngModel)]="register.email" required email />
+          <div *ngIf="registerForm.submitted && registerForm.form.get('email')?.invalid" class="error">
             Nieprawidłowy e-mail!
           </div>
 
-          <input type="password" placeholder="Hasło" formControlName="password" />
-          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
+          <input type="password" placeholder="Hasło" name="password" [(ngModel)]="register.password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
+          <div *ngIf="registerForm.submitted && registerForm.form.get('password')?.invalid" class="error">
             Hasło musi zawierać 8 znaków, 1 wielką literę, 1 cyfrę i 1 znak specjalny!
           </div>
 
-          <select formControlName="role">
+          <select name="role" [(ngModel)]="register.role" required>
             <option value="" disabled selected>Jestem...</option>
-            <option [(ngModel)]="Role.STUDENT">Uczniem</option>
-            <option [(ngModel)]="Role.TEACHER">Nauczycielem</option>
+            <option [value]="Role.STUDENT">Uczniem</option>
+            <option [value]="Role.TEACHER">Nauczycielem</option>
           </select>
-          <div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="error">
+          <div *ngIf="registerForm.submitted && registerForm.form.get('role')?.invalid" class="error">
             Wybierz rolę!
           </div>
 
-          <button class="btn-register" [disabled]="registerForm.invalid">Zarejestruj się</button>
+          <button class="btn-register" [disabled]="!registerForm.valid">Zarejestruj się</button>
           <button type="button" class="toggle-btn" (click)="toggleForms()">Masz już konto? Zaloguj się</button>
         </form>
       </div>

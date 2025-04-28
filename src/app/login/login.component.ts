@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserServiceService } from '../service/user-service.service';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 import { Role } from '../models/role.enum';
+import { UserStateService } from '../service/user-state-service.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,52 +12,50 @@ import { Role } from '../models/role.enum';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  isLoginForm = true;
-  loginForm: FormGroup;
-  registerForm: FormGroup;
 
   user: User= new User()
-
   Role = Role
 
-  constructor(private fb: FormBuilder, private userService: UserServiceService, private router: Router) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
-    });
+  isLoginForm = true;
 
-    this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-      lastName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [
-        Validators.required,
-        Validators.pattern('^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
-      ]],
-      role: ['', Validators.required]
-    });
-  }
+  login = {
+    email: '',
+    password: ''
+  };
+
+  register = {
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    role: ''
+  };
+
+  constructor(private userService: UserServiceService, private router: Router, private userStateService: UserStateService) {}
 
   toggleForms() {
     this.isLoginForm = !this.isLoginForm;
   }
 
   onLogin() {
-    if (this.loginForm.valid) {
+    if (this.login.email && this.login.password) {
       this.userService.loginUser(
       this.user.email,
       this.user.password
       ).subscribe(response => {
         console.log('Logging in:', response);
-        alert("Login Successful!");
-        this.router.navigate(['/quiz']);
+        this.userService.getUserByEmail(this.user.email).subscribe(userData => {
+          this.userStateService.setCurrentUser(userData);
+          alert("Login Successful!");
+          this.router.navigate(['/quiz']);
+        });
       });
     }
   }
 
   onRegister() {
-    if (this.registerForm.valid) {
-      const user = this.registerForm.value;
+    if (this.register.name && this.register.lastName && this.register.email && this.register.password && this.register.role) {
+      const user = this.register;
       console.log(user);
       this.userService.registerUser(user).subscribe(response => {
         console.log('Registering:', response);

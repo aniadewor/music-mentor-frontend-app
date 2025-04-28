@@ -9,6 +9,7 @@ import { QuizViewComponent } from './quiz-view/quiz-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuizAddComponent } from './quiz-add/quiz-add.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +24,7 @@ import { QuizAddComponent } from './quiz-add/quiz-add.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
