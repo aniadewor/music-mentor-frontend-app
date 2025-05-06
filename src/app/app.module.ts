@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { QuizViewComponent } from './quiz-view/quiz-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuizAddComponent } from './quiz-add/quiz-add.component';
+import { QuizListComponent } from './quiz-list/quiz-list.component';
+import { QuizSolveComponent } from './quiz-solve/quiz-solve.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { QuizAddComponent } from './quiz-add/quiz-add.component';
     LoginComponent,
     QuizViewComponent,
     QuizAddComponent,
+    QuizListComponent,
+    QuizSolveComponent,
   ],
   imports: [
     BrowserModule,

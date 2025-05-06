@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 import { Role } from '../models/role.enum';
 import { UserStateService } from '../service/user-state-service.service';
+import { UserServiceService } from '../service/user-service.service';
 
 
 
@@ -11,15 +12,23 @@ import { UserStateService } from '../service/user-state-service.service';
   styleUrls: ['./quiz-view.component.css']
 })
 export class QuizViewComponent implements OnInit {
-  user: User = new User();
+  user: User | null = null;
   Role = Role;
 
-  constructor(private userStateService: UserStateService){}
+  constructor(private userStateService: UserStateService, private userService: UserServiceService){}
 
   //TODO: get real user role
   ngOnInit() {
-     const userEmail=this.userStateService.getCurrentUser()
-     console.log(userEmail)
-     this.user.role = Role.TEACHER;
+     this.user=this.userStateService.getCurrentUser()
+     console.log(this.user)
+     console.log(this.user?.email)
+     const email = this.user?.email;
+     if (email){
+      this.userService.getUserByEmail(email).subscribe(userDate =>{
+        console.log(userDate);
+        this.user = userDate;
+        userDate.role = Role.TEACHER;
+         })
+     }
   }
 }

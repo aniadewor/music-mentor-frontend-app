@@ -44,14 +44,15 @@ export class LoginComponent {
       this.user.password
       ).subscribe(response => {
         console.log('Logging in:', response);
-        this.userService.getUserByEmail(this.user.email).subscribe(userData => {
-          this.userStateService.setCurrentUser(userData);
+    //  this.userService.getUserByEmail(this.user.email).subscribe(userData => {
+        this.user.email = this.login.email;
+         this.userStateService.setCurrentUser(this.user);
           alert("Login Successful!");
           this.router.navigate(['/quiz']);
-        });
-      });
+       });
+      };
     }
-  }
+
 
   onRegister() {
     if (this.register.name && this.register.lastName && this.register.email && this.register.password && this.register.role) {

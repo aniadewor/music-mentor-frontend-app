@@ -22,5 +22,4 @@ export class UserStateService {
   clearCurrentUser(): void {
     this.currentUserSubject.next(null);
   }
-
 }
