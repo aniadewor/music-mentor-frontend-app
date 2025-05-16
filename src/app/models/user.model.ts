@@ -1,12 +1,14 @@
 import {Role} from './role.enum'
 export class User {
+  public id:number;
   public email: string;
   public password: string;
   public name: string;
   public lastName: string;
   public role: Role;
  constructor()
- {this.email='',
+ {this.id=0,
+  this.email='',
   this.password='',
   this.name= '',
   this.lastName='',

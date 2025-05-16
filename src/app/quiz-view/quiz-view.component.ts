@@ -12,23 +12,26 @@ import { UserServiceService } from '../service/user-service.service';
   styleUrls: ['./quiz-view.component.css']
 })
 export class QuizViewComponent implements OnInit {
-  user: User | null = null;
+  user: User = new User();
   Role = Role;
 
   constructor(private userStateService: UserStateService, private userService: UserServiceService){}
 
-  //TODO: get real user role
   ngOnInit() {
-     this.user=this.userStateService.getCurrentUser()
-     console.log(this.user)
-     console.log(this.user?.email)
-     const email = this.user?.email;
-     if (email){
-      this.userService.getUserByEmail(email).subscribe(userDate =>{
+    const currentUser = this.userStateService.getCurrentUser();
+    if (currentUser) {
+      this.user = currentUser;
+    }
+     this.getUserDate();
+  }
+
+  private getUserDate() {
+    const email = this.user?.email;
+    if (email) {
+      this.userService.getUserByEmail(email).subscribe(userDate => {
         console.log(userDate);
         this.user = userDate;
-        userDate.role = Role.TEACHER;
-         })
-     }
+      });
+    }
   }
 }

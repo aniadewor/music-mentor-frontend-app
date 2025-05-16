@@ -22,10 +22,4 @@ export class QuizServiceService {
   updateQuizScore(quizid:any): Observable<any> {
     return this.http.post(`${this.baseUrl}/updateQuizScore`, quizid);
 }
-//dodałam to
-getAllQuizzes(): Observable<any> {
-  return this.http.get(`${this.baseUrl}/getAllQuizzes`);
-}
-
-
 }

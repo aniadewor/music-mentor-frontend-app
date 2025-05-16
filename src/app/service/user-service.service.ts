@@ -20,6 +20,6 @@ export class UserServiceService {
     return this.http.get(`${this.baseUrl}/${id}`)
   }
   getUserByEmail(email:string):Observable<any> {
-    return this.http.get(`${this.baseUrl}/email/${email}`)
+    return this.http.get(`${this.baseUrl}/email/${email}`,{ withCredentials: true })
   }
 }

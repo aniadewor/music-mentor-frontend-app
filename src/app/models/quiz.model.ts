@@ -7,7 +7,7 @@ export interface Quiz{
   title?:string;
   description?:string;
   scoreSum?:number;
-  owner?:User;
+  ownerId?:number;
   numberOfQuestions?:number;
   question?:Question[];
 }
