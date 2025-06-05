@@ -6,6 +6,7 @@ import { Question } from '../models/question.model';
 import { UserStateService } from '../service/user-state-service.service';
 import { User } from '../models/user.model';
 import { UserServiceService } from '../service/user-service.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-quiz-add',
@@ -17,6 +18,7 @@ export class QuizAddComponent implements OnInit{
   quiz:Quiz={};
   questions:Question[]=[];
   user: User = new User();
+  quizzes: Quiz[] = [];
 
   showValidationMessage=false;
   quizSaved=false;
@@ -28,29 +30,41 @@ ngOnInit(){
 const currentUser = this.userStateService.getCurrentUser();
 if (currentUser) {
   this.user = currentUser;
+  this.user.id = currentUser.id;
 }
-console.log(currentUser);
-}
+if (currentUser?.email){
+this.userService.getUserByEmail(currentUser?.email).subscribe(userDate => {
+        this.user = userDate;
+  })
+    }
+    this.quizz()
+  }
 
   addQuestion() {
-    this.questions.push({...this.question})
+
     const quizData = {
       quizId: this.quiz.id,
       questionList: this.questions
     };
+    console.log(this.quiz.id)
     this.quizService.addQuestions(quizData).subscribe(response =>{
       console.log('Add Questions',response)
     })
+    
+    this.router.navigate(['/quiz-list']);
+    
+  }
+
+  addNewQuestion(){
+      this.questions.push({...this.question})
   }
 
   saveQuiz() {
-    console.log(this.quiz)
-    this.getUserDate();
-    console.log(this.user.id);
     this.quiz.ownerId=this.user.id;
-    console.log(this.quiz);
     this.quizService.addQuiz(this.quiz).subscribe(response => {
       console.log('Add Quiz',response)
+      this.quiz = response;
+      this.quiz.id = response.quizId
     })
     if (!this.quiz.title || !this.quiz.description) {
       this.showValidationMessage = true;
@@ -60,14 +74,21 @@ console.log(currentUser);
     this.showValidationMessage = false;
     this.quizSaved = true;
   }
-  private getUserDate() {
-    const email = this.user?.email;
-    if (email) {
-      this.userService.getUserByEmail(email).subscribe(userDate => {
-        console.log(userDate);
-        this.user = userDate;
-        console.log(this.user);
+
+quizz(){
+  this.quizService.getQuizzesByUserId(this.user.id).subscribe({
+
+        next: (quizzes: Quiz[]) => {
+         
+          console.log(quizzes);
+          this.quizzes = quizzes;
+        },
+    
+        error: (err) => {
+          console.error('Błąd pobierania quizów:', err);
+        }
       });
-    }
+    } 
   }
-}
+
+

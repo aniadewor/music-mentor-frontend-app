@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  font-family: 'Nunito', sans-serif;
+  background: #0062B2;
+  padding: 30px 0;
+}
+
+.dashboard-container {
+  display: flex;
+  width: 1250px;
+  max-width: 100%;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  min-height: 90vh;
+  margin: 0 auto;
+}
+
+.sidebar {
+  width: 260px;
+  background: #003366;
+  color: white;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.sidebar h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 12px 18px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background: #297AD0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 50px;
+  text-align: center;
+}
+
+header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  color: #004174;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 16px;
+  color: #5C5D5F;
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #F8F9FA;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  font-size: 20px;
+  color: #0062B2;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #5C5D5F;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}

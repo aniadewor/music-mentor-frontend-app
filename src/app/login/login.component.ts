@@ -28,6 +28,7 @@ export class LoginComponent {
     lastName: '',
     email: '',
     password: '',
+    schoolName: '',
     role: ''
   };
 
@@ -55,9 +56,10 @@ export class LoginComponent {
 
 
   onRegister() {
-    if (this.register.name && this.register.lastName && this.register.email && this.register.password && this.register.role) {
+    if (this.register.name && this.register.lastName && this.register.email && this.register.password && this.register.role &&this.register.schoolName) {
       const user = this.register;
       console.log(user);
+      console.log(this.register);
       this.userService.registerUser(user).subscribe(response => {
         console.log('Registering:', response);
         console.log(user);

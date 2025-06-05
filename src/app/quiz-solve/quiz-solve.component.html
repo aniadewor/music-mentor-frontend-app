@@ -1,1 +1,41 @@
-<p>quiz-solve works!</p>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz – Music Mentor</title>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <h1>Quiz: Podstawy Teorii Muzyki</h1>
+    <p class="description">Ten quiz sprawdza Twoją wiedzę z zakresu interwałów i skal.</p>
+
+    <div class="question-box">
+      <h2>Pytanie {{ currentQuestionIndex + 1 }} z {{ questions.length }}</h2>
+      <p>{{ questions[currentQuestionIndex].text }}</p>
+
+      <div class="options">
+        <label *ngFor="let opt of questions[currentQuestionIndex].options">
+          <input
+            type="radio"
+            name="answer"
+            [(ngModel)]="selectedOption"
+            [value]="opt"
+          />
+          {{ opt }}
+        </label>
+      </div>
+
+      <div class="actions">
+        <button
+          class="btn"
+          (click)="next()"
+          [disabled]="!selectedOption"
+        >
+          Dalej
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

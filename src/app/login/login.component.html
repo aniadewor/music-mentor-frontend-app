@@ -47,6 +47,18 @@
           <div *ngIf="registerForm.submitted && registerForm.form.get('password')?.invalid" class="error">
             Hasło musi zawierać 8 znaków, 1 wielką literę, 1 cyfrę i 1 znak specjalny!
           </div>
+          <select name="schoolName" [(ngModel)]="register.schoolName" required>
+          <option value="" disabled selected>Wybierz szkołę</option>
+          <option value="SP1">Szkoła Podstawowa nr 1 w Zabrzu</option>
+          <option value="SP2">Szkoła Podstawowa nr 2 w Katowicach</option>
+          <option value="SP3">Szkoła Podstawowa nr 3 w Gliwicach</option>
+          <option value="LO1">I Liceum Ogólnokształcące w Chorzowie</option>
+          <option value="LO2">II Liceum Ogólnokształcące w Bytomiu</option>
+          <!-- dodaj więcej szkół według uznania -->
+        </select>
+        <div *ngIf="registerForm.submitted && registerForm.form.get('schoolName')?.invalid" class="error">
+          Wybierz nazwę szkoły!
+        </div>
 
           <select name="role" [(ngModel)]="register.role" required>
             <option value="" disabled selected>Jestem...</option>

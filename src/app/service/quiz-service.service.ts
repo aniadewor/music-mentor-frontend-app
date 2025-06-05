@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,15 +11,19 @@ export class QuizServiceService {
 
   constructor(private http:HttpClient) { }
   addQuiz(quiz:any) : Observable<any>{
-    return this.http.post(`${this.baseUrl}/addQuiz`, quiz);
+    return this.http.post(`${this.baseUrl}/addQuiz`, quiz, { withCredentials: true });
   }
   addQuestions(question:any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/addQuestion`, question);
+    return this.http.post(`${this.baseUrl}/addQuestions`, question, { withCredentials: true });
   }
   getQuizById(id:any): Observable<any> {
     return this.http.get(`${this.baseUrl}/getQuizById`, id);
   }
-  updateQuizScore(quizid:any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/updateQuizScore`, quizid);
+  getQuizzesByUserId(userId: number): Observable<any> {
+  const params = new HttpParams().set('userId', userId.toString());
+  return this.http.get(`${this.baseUrl}/getQuizzesByUserId`, {
+    params,
+    withCredentials: true
+  });
 }
 }

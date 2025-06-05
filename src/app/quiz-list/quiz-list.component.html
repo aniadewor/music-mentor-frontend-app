@@ -1,1 +1,33 @@
-<p>quiz-list works!</p>
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <h2>Music Mentor</h2>
+    <nav>
+      <ul>
+        <li><a routerLink="/quiz-view">Panel Główny</a></li>
+              <li><a href="#" class="active"> Moje Quizy</a></li>
+              <li><a href="#">Moje Lekcje</a></li>
+              <li><a href="#">Twórz Lekcje</a></li>
+              <li><a routerLink="/quizAdd">Twórz Quizy</a></li>
+              <li><a href="#">Postępy Uczniów</a></li>
+              <li><a href="#">Profil</a></li>
+              <li><a href="#">Wyloguj się</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+ <main class="main-content">
+  <header>
+    <h1>Wybierz Quiz</h1>
+    <p>Znajdź quiz, który chcesz rozwiązać.</p>
+  </header>
+
+  <p>Liczba quizów: {{ quizzes.length }}</p>
+
+  <section class="cards">
+    <div class="card" *ngFor="let quiz of quizzes">
+      <h3>{{ quiz.title }}</h3>
+      <p>{{ quiz.description }}</p>
+    </div>
+  </section>
+</main>
+</div>

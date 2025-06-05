@@ -1,0 +1,125 @@
+
+/* 1. Globalne ustawienia: gradientowe tło + centrowanie */
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #004080, #0074D9);
+  font-family: 'Nunito', sans-serif;
+  overflow: hidden;
+}
+
+/* 2. Główny biały panel z quizem */
+.quiz-container {
+  background: #FFFFFF;
+  width: 90%;
+  max-width: 720px;
+  padding: 48px 40px;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. Nagłówek i opis */
+.quiz-container h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #0F2C5B;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.quiz-container p.description {
+  font-size: 18px;
+  color: #52606D;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* 4. Pudełko z pytaniem */
+.quiz-container .question-box {
+  background: #F0F4F8;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.quiz-container .question-box h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0F2C5B;
+  margin-bottom: 16px;
+}
+
+.quiz-container .question-box p {
+  font-size: 16px;
+  color: #242B39;
+}
+
+/* 5. Lista opcji */
+.quiz-container .options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.quiz-container .options label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  border: 1px solid #D0D7E8;
+  border-radius: 8px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  font-size: 16px;
+  color: #242B39;
+}
+
+.quiz-container .options label:hover {
+  background: #E8F0FE;
+  border-color: #297AD0;
+}
+
+.quiz-container input[type="radio"] {
+  transform: scale(1.2);
+  accent-color: #297AD0;
+}
+
+/* 6. Przycisk „Dalej” */
+.quiz-container .actions {
+  margin-top: 32px;
+  text-align: right;
+}
+
+.quiz-container .btn {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.quiz-container .btn:hover {
+  background: #0F2C5B;
+}
+
+/* 7. Responsywność */
+@media (max-width: 600px) {
+  .quiz-container {
+    padding: 32px 20px;
+  }
+  .quiz-container .btn {
+    width: 100%;
+  }
+}

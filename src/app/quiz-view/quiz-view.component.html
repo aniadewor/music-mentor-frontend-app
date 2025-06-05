@@ -5,7 +5,10 @@
       <nav>
           <ul>
               <li><a href="#" class="active">Panel Główny</a></li>
-              <li><a href="#">Moje Kursy</a></li>
+               <li *ngIf="user.role === Role.TEACHER">
+            <a routerLink="/quiz-list">Moje Quizy</a>
+          </li>
+              <li><a href="#">Moje Lekcje</a></li>
               <li><a href="#">Twórz Lekcje</a></li>
               <li><a routerLink="/quizAdd">Twórz Quizy</a></li>
               <li><a href="#">Postępy Uczniów</a></li>
@@ -43,7 +46,7 @@
     </header>
     <section class="cards">
       <div class="card">
-        <h3>Moje Kursy</h3>
+        <h3>Moje Quizy</h3>
         <p>Kontynuuj naukę w rozpoczętych kursach.</p>
       </div>
       <div class="card">

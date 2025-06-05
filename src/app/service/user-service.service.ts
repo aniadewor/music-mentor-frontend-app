@@ -22,4 +22,7 @@ export class UserServiceService {
   getUserByEmail(email:string):Observable<any> {
     return this.http.get(`${this.baseUrl}/email/${email}`,{ withCredentials: true })
   }
+  getUserBySchoolName(schoolName:string):Observable<any> {
+    return this.http.get(`${this.baseUrl}/getBySchoolName`,{ withCredentials: true })
+  }
 }

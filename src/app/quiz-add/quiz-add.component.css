@@ -55,7 +55,6 @@ html, body {
   overflow-y: auto;
 }
 
-/* 🔧 DODANE: kontener pól */
 .question-container {
   width: 100%;
   display: flex;
@@ -116,7 +115,6 @@ textarea {
   font-size: 16px;
 }
 
-/* 🔧 POPRAWIONE: komunikaty błędów */
 .error-message {
   color: red;
   font-size: 14px;
@@ -124,7 +122,7 @@ textarea {
   min-height: 18px;
 }
 
-/* Opcjonalnie: dynamiczne czerwone obramowanie */
+
 input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched {
   border-color: red;
