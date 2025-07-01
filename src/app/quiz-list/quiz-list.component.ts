@@ -3,11 +3,15 @@ import { QuizServiceService } from '../service/quiz-service.service';
 import { UserStateService } from '../service/user-state-service.service';
 import { UserServiceService } from '../service/user-service.service';
 import { switchMap } from 'rxjs';
+import { User } from '../models/user.model';
+import { Role } from '../models/role.enum';
 
 interface Quiz {
+   id: number;   
   title: string;
   description: string;
   buttonLabel: string;
+  className?: string[];
 }
 
 @Component({
@@ -16,46 +20,81 @@ interface Quiz {
   styleUrls: ['./quiz-list.component.css']
 })
 export class QuizListComponent implements OnInit {
-
+  user: User = new User();
   quizzes: Quiz[] = [];
+  classNumbers: string[] = ['1', '2', '3', '4', '5', '6', '7'];
+  selectedQuiz: Quiz | null = null;
+  assigningClasses: string[] = [];
+  Role = Role;
 
  constructor(private quizService: QuizServiceService, private userStateService: UserStateService,private userService: UserServiceService,) {}
 
 ngOnInit(): void {
-  // Pobieramy aktualnie zalogowanego użytkownika z serwisu, który przechowuje info o użytkowniku.
+
   const currentUser = this.userStateService.getCurrentUser();
 
-  // Jeśli użytkownik jest zalogowany i ma ustawiony e-mail
   if (currentUser && currentUser.email) {
-    const email = currentUser.email; // Zapisujemy e-mail użytkownika
-
-    // Pobieramy pełne dane użytkownika z backendu po jego adresie e-mail.
-    // .pipe() pozwala nam połączyć kilka operacji asynchronicznych w jednym łańcuchu.
-    this.userService.getUserByEmail(email)
-      .pipe(
-        // switchMap sprawia, że jak już pobierzemy użytkownika, to od razu pobieramy quizy dla tego użytkownika (po jego id).
-        switchMap(user => this.quizService.getQuizzesByUserId(user.id))
-      )
-      .subscribe({
-        // Jeśli wszystko się udało i quizy zostały pobrane:
-        next: (quizzes: Quiz[]) => {
-          // Pokazujemy je w konsoli (do debugowania)
+    const email = currentUser.email; 
+   this.userService.getUserByEmail(email).subscribe(userDate => {
+        console.log(userDate);
+        this.user = userDate;
+        console.log(this.user)
+        if (this.user.role==Role.TEACHER){
+          this.quizService.getQuizzesByUserId(this.user.id)
+      .subscribe(quizzes => {
           console.log('ODEBRANE QUIZY:', quizzes);
-          // Przypisujemy je do zmiennej, żeby wyświetlić je na stronie.
           this.quizzes = quizzes;
+          console.log(this.quizzes)
         },
-        // Jeśli coś pójdzie nie tak na którymś etapie pobierania danych:
-        error: (err) => {
-          // Pokazujemy błąd w konsoli.
-          console.error('Błąd pobierania quizów:', err);
-        }
+      )};
+      if (this.user.role==Role.STUDENT){
+        this.quizService.getQuizzesByClass(this.user.className, this.user.id).subscribe(quizzes => {
+          console.log('ODEBRANE QUIZY:', quizzes);
+          this.quizzes = quizzes;
+          console.log(this.quizzes)
+        },
+   )}
       });
-
   } else {
-    // Jeśli użytkownik nie jest zalogowany lub nie ma e-maila, dajemy ostrzeżenie w konsoli.
     console.warn('Brak zalogowanego użytkownika!');
   }
   }
+openAssignClass(quiz: Quiz) {
+  this.selectedQuiz = quiz;
+  this.assigningClasses = quiz.className ? [...quiz.className] : [];
 }
+
+toggleClassAssignment(classNum: string) {
+  if (this.assigningClasses.includes(classNum)) {
+    this.assigningClasses = this.assigningClasses.filter(c => c !== classNum);
+  } else {
+    this.assigningClasses.push(classNum);
+  }
+}
+
+saveClassAssignment(quiz: Quiz) {
+  this.quizService.updateClassName(quiz.id, this.assigningClasses).subscribe({
+    next: (updatedQuiz: Quiz) => {
+      // Aktualizuje przypisane klasy w quizie na froncie.
+      quiz.className = updatedQuiz.className;
+      // Zamyka panel przypisywania.
+      this.selectedQuiz = null;
+      // Czyści wybrane klasy.
+      this.assigningClasses = [];
+    },
+    error: err => {
+      alert('Błąd zapisywania klas!');
+    }
+  });
+}
+
+// Anuluje przypisywanie klas, zamyka panel i czyści tymczasowe dane.
+cancelAssignClass() {
+  this.selectedQuiz = null;
+  this.assigningClasses = [];
+}
+
+}
+
 
 

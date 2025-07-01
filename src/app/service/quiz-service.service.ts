@@ -26,4 +26,21 @@ export class QuizServiceService {
     withCredentials: true
   });
 }
+updateClassName(quizId: number, classNames: string[]): Observable<any> {
+  let params = new HttpParams().set('quizId', quizId.toString());
+  classNames.forEach(className => {
+    params = params.append('className', className);
+  });
+  return this.http.post(
+    `${this.baseUrl}/updateClassName`,
+    {},
+    { params, withCredentials: true }
+  );
+}
+getQuizzesByClass(className: string, userId: number): Observable<any>{
+    let params = new HttpParams()
+    .set('className', className)
+    .set('userId', userId.toString());
+  return this.http.post(`${this.baseUrl}/getQuizzesByClass`,{}, {params, withCredentials: true});
+}
 }

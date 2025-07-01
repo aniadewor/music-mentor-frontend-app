@@ -1,0 +1,228 @@
+/* === GLOBAL RESET === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  background: #0062B2;
+  color: #333;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* === DASHBOARD === */
+.dashboard-container {
+  display: flex;
+  width: 1250px;
+  max-width: 100%;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  min-height: 90vh;
+  margin: 30px auto;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  width: 260px;
+  background: #003366;
+  color: white;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.sidebar h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 12px 18px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background: #297AD0;
+}
+
+/* === MAIN CONTENT === */
+.main-content {
+  flex: 1;
+  padding: 50px;
+  text-align: center;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  color: #004174;
+  font-weight: bold;
+}
+
+header p {
+  font-size: 16px;
+  color: #5C5D5F;
+}
+
+/* === SETTINGS TABLE === */
+.settings-section {
+  margin: 0 auto;
+  max-width: 800px;
+  text-align: left;
+}
+
+.settings-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #F8F9FA;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(41,122,208,0.08);
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.settings-table th, .settings-table td {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.settings-table th {
+  background: #297AD0;
+  color: #fff;
+  font-weight: bold;
+}
+
+.settings-table tbody tr:nth-child(even) {
+  background: #e6effa;
+}
+
+.settings-table tbody tr:nth-child(odd) {
+  background: #F8F9FA;
+}
+
+.settings-table td select {
+  font-size: 15px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: 1px solid #b5c8e8;
+  background: #fff;
+  transition: border 0.2s;
+}
+
+.settings-table td select:focus {
+  border: 1.5px solid #297AD0;
+  outline: none;
+}
+
+.settings-table button {
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.23s, box-shadow 0.17s, color 0.17s;
+  letter-spacing: 0.3px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(41, 122, 208, 0.08);
+}
+
+.settings-table button:hover {
+  background: linear-gradient(135deg, #005BBB, #297AD0);
+  color: #FFD700;
+}
+
+/* === TABLET: iPad Pro & Air === */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+    padding: 0 20px;
+    border-radius: 15px;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .main-content {
+    padding: 40px 20px;
+  }
+
+  .settings-section {
+    padding: 0 10px;
+    max-width: 100%;
+  }
+}
+
+/* === MOBILE: smartfony === */
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 0 10px;
+    width: 100%;
+    max-width: 480px;
+    margin: 20px auto;
+  }
+
+  .sidebar nav ul li a {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .main-content {
+    padding: 20px 10px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  .settings-table th, .settings-table td {
+    font-size: 14px;
+    padding: 8px 6px;
+  }
+}

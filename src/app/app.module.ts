@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuizAddComponent } from './quiz-add/quiz-add.component';
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 import { QuizSolveComponent } from './quiz-solve/quiz-solve.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { QuizSolveComponent } from './quiz-solve/quiz-solve.component';
     QuizAddComponent,
     QuizListComponent,
     QuizSolveComponent,
+    SettingsComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

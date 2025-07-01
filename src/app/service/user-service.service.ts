@@ -22,7 +22,11 @@ export class UserServiceService {
   getUserByEmail(email:string):Observable<any> {
     return this.http.get(`${this.baseUrl}/email/${email}`,{ withCredentials: true })
   }
-  getUserBySchoolName(schoolName:string):Observable<any> {
-    return this.http.get(`${this.baseUrl}/getBySchoolName`,{ withCredentials: true })
-  }
+  getUserBySchoolName(schoolName: string): Observable<any> {
+  return this.http.get(`${this.baseUrl}/getBySchoolName?schoolName=${schoolName}`, { withCredentials: true });
+}
+  updateUserClassName(userId: number, className: string): Observable<any> {
+  return this.http.post(`${this.baseUrl}/updateUserClassName?id=${userId}&className=${className}`, {});
+}
+
 }

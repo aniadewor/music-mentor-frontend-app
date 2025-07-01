@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil użytkownika</title>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>Twój profil</h1>
+      <p>Dane użytkownika</p>
+    </div>
+
+    <div class="right">
+      <div class="form-container">
+        <h2>Dane profilu</h2>
+
+      <p><strong>Imię i nazwisko:</strong> {{ profile.name }} {{ profile.lastName }}</p>
+      <p><strong>Rola:</strong> {{ profile.role === 'STUDENT' ? 'Uczeń' : 'Nauczyciel' }}</p>
+      <p><strong>Szkoła:</strong> {{ profile.schoolName }}</p>
+      <p><strong>Adres e-mail:</strong> {{ profile.email }}</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

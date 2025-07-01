@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Ustawienia – Music Mentor</title>
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <h2>Music Mentor</h2>
+      <nav>
+        <ul>
+          <li><a routerLink="/dashboard" routerLinkActive="active">Panel Główny</a></li>
+          <li><a routerLink="/quiz-list" routerLinkActive="active">Moje Quizy</a></li>
+          <li><a href="#">Moje Lekcje</a></li>
+          <li><a href="#">Twórz Lekcje</a></li>
+          <li><a routerLink="/quizAdd" routerLinkActive="active">Twórz Quizy</a></li>
+          <li><a href="#">Postępy Uczniów</a></li>
+          <li><a routerLink="/profil">Profil</a></li>
+          <li><a routerLink="/settings" routerLinkActive="active">Ustawienia</a></li>
+          <li><a href="#">Wyloguj się</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Ustawienia</h1>
+        <p>Przypisz uczniów do klas w swojej szkole.</p>
+      </header>
+
+      <!-- Tabela przypisywania uczniów do klas -->
+      <section class="settings-section">
+        <table class="settings-table">
+          <thead>
+            <tr>
+              <th>Imię</th>
+              <th>Nazwisko</th>
+              <th>Klasa</th>
+              <th>Akcja</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{ user.name }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>
+                <select [(ngModel)]="selectedClasses[user.id]">
+                  <option *ngFor="let c of [1,2,3,4,5,6,7]" [value]="c">{{ c }}</option>
+                </select>
+              </td>
+              <td>
+                <button (click)="updateClass(user.id)">Zapisz</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

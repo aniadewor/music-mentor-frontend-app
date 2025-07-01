@@ -7,6 +7,7 @@ export class User {
   public lastName: string;
   public role: Role;
   public schoolName: string;
+  public className: string;
  constructor()
  {this.id=0,
   this.email='',
@@ -14,6 +15,7 @@ export class User {
   this.name= '',
   this.lastName='',
   this.role=Role.STUDENT;
-  this.schoolName= ''
+  this.schoolName= '',
+  this.className = ' '
 }
 }

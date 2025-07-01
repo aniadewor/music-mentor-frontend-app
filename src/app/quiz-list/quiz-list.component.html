@@ -4,30 +4,76 @@
     <nav>
       <ul>
         <li><a routerLink="/quiz-view">Panel Główny</a></li>
-              <li><a href="#" class="active"> Moje Quizy</a></li>
-              <li><a href="#">Moje Lekcje</a></li>
-              <li><a href="#">Twórz Lekcje</a></li>
-              <li><a routerLink="/quizAdd">Twórz Quizy</a></li>
-              <li><a href="#">Postępy Uczniów</a></li>
-              <li><a href="#">Profil</a></li>
-              <li><a href="#">Wyloguj się</a></li>
+        <li><a href="#" class="active">Moje Quizy</a></li>
+        <li><a href="#">Moje Lekcje</a></li>
+        <li><a href="#">Twórz Lekcje</a></li>
+        <li><a routerLink="/quizAdd">Twórz Quizy</a></li>
+        <li><a href="#">Postępy Uczniów</a></li>
+        <li><a routerLink="/profil">Profil</a></li>
+        <li><a href="#">Wyloguj się</a></li>
       </ul>
     </nav>
   </aside>
 
- <main class="main-content">
-  <header>
-    <h1>Wybierz Quiz</h1>
-    <p>Znajdź quiz, który chcesz rozwiązać.</p>
-  </header>
+  <main class="main-content" *ngIf="user.role === Role.TEACHER">
+    <header>
+      <h1>Moje Quizy</h1>
+      <p>Lista Twoich quizów. Możesz przypisać quiz do wybranej klasy.</p>
+    </header>
 
-  <p>Liczba quizów: {{ quizzes.length }}</p>
+    <p>Liczba quizów: {{ quizzes.length }}</p>
 
-  <section class="cards">
-    <div class="card" *ngFor="let quiz of quizzes">
-      <h3>{{ quiz.title }}</h3>
-      <p>{{ quiz.description }}</p>
-    </div>
-  </section>
-</main>
+    <section class="cards">
+      <div class="card" *ngFor="let quiz of quizzes">
+        <h3>{{ quiz.title }}</h3>
+        <p>{{ quiz.description }}</p>
+
+        <div>
+          <strong>Przypisane klasy:</strong>
+          <span *ngIf="quiz.className?.length; else brakKlas">
+            {{ quiz.className?.join(', ') }}
+          </span>
+          <ng-template #brakKlas>Brak</ng-template>
+        </div>
+
+        <button (click)="openAssignClass(quiz)" *ngIf="selectedQuiz !== quiz">Przypisz do klasy</button>
+
+        <!-- Formularz wyboru klas -->
+        <div *ngIf="selectedQuiz === quiz" class="assign-class-modal">
+          <div>
+            <label *ngFor="let classNum of classNumbers" style="margin-right: 15px;">
+              <input
+                type="checkbox"
+                [value]="classNum"
+                [checked]="assigningClasses.includes(classNum)"
+                (change)="toggleClassAssignment(classNum)"
+              >
+              Klasa {{ classNum }}
+            </label>
+          </div>
+          <div style="margin-top: 10px;">
+            <button (click)="saveClassAssignment(quiz)" style="margin-right:10px;">Zapisz</button>
+            <button (click)="cancelAssignClass()">Anuluj</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+   <main class="main-content" *ngIf="user.role === Role.STUDENT">
+    <header>
+      <h1>Moje Quizy</h1>
+      <p>Lista Twoich quizów do rozwiązania.</p>
+    </header>
+
+    <p>Liczba quizów: {{ quizzes.length }}</p>
+
+    <section class="cards">
+      <div class="card" *ngFor="let quiz of quizzes">
+        <h3>{{ quiz.title }}</h3>
+        <p>{{ quiz.description }}</p>
+        <button>Rozwiąz</button>
+      </div>
+    </section>
+  </main>
 </div>

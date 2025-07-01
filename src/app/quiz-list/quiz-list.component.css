@@ -126,3 +126,29 @@ header p {
   font-size: 16px;
   font-weight: bold;
 }
+.card button,
+.card .btn {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #297AD0 0%, #005BBB 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+  box-shadow: 0 2px 6px rgba(41, 122, 208, 0.12);
+  transition: background 0.23s, box-shadow 0.17s, color 0.17s;
+  letter-spacing: 0.5px;
+  outline: none;
+}
+
+.card button:hover,
+.card .btn:hover {
+  background: linear-gradient(135deg, #005BBB 0%, #297AD0 100%);
+  color: #FFD700;
+  box-shadow: 0 4px 14px rgba(41, 122, 208, 0.18);
+  border: none;
+}
+
