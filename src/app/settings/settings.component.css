@@ -28,50 +28,6 @@ html, body {
   margin: 30px auto;
 }
 
-/* === SIDEBAR === */
-.sidebar {
-  width: 260px;
-  background: #003366;
-  color: white;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
-
-.sidebar h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  text-align: center;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar nav ul li {
-  margin: 10px 0;
-}
-
-.sidebar nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  display: block;
-  padding: 12px 18px;
-  border-radius: 8px;
-  transition: background 0.3s ease;
-}
-
-.sidebar nav ul li a:hover,
-.sidebar nav ul li a.active {
-  background: #297AD0;
-}
-
 /* === MAIN CONTENT === */
 .main-content {
   flex: 1;
@@ -178,12 +134,7 @@ header p {
     border-radius: 15px;
   }
 
-  .sidebar {
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-    border-radius: 15px 15px 0 0;
-  }
+
 
   .main-content {
     padding: 40px 20px;

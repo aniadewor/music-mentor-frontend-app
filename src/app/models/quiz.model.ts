@@ -10,4 +10,5 @@ export interface Quiz{
   ownerId?:number;
   numberOfQuestions?:number;
   question?:Question[];
+  schoolName?:string;
 }

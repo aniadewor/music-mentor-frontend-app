@@ -1,0 +1,144 @@
+/* --- DESKTOP (KOMPUTER) --- */
+.sidebar {
+  width: 260px;
+  background: #003366;
+  color: white;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  height: 100%;
+  position: static;
+}
+
+.sidebar h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 12px 18px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background: #297AD0;
+}
+.sidebar-title {
+  display: block;
+}
+
+/* --- TOP BAR ukryty domyślnie (dla desktop) --- */
+.top-bar {
+  display: none;
+}
+
+/* === RESPONSYWNOŚĆ: TABLET I TELEFON === */
+@media (max-width: 1024px) {
+  /* TOP BAR */
+  .top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #003366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 0 1rem;
+  }
+
+  .top-bar .hamburger {
+    position: absolute;
+    left: 15px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .brand-title {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+  }
+   .sidebar-title {
+    display: none; 
+  }
+
+  /* SIDEBAR - MOBILE */
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 240px;
+    height: calc(100vh - 60px);
+    background: #003366;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    border-radius: 0;
+    z-index: 1050;
+    padding: 20px 15px;
+    font-size: 15px;
+  }
+
+  .sidebar h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .sidebar nav ul li a {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+
+  .sidebar.mobile-visible {
+    transform: translateX(0);
+  }
+
+  /* CIEMNA NAKŁADKA */
+  .sidebar-overlay {
+    display: none;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1040;
+  }
+  .main-content {
+    margin-top: 60px;
+    padding: 1rem;
+    padding-top: 80px; 
+  }
+}

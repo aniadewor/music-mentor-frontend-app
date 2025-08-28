@@ -61,6 +61,7 @@ this.userService.getUserByEmail(currentUser?.email).subscribe(userDate => {
 
   saveQuiz() {
     this.quiz.ownerId=this.user.id;
+    this.quiz.schoolName = this.user.schoolName;
     this.quizService.addQuiz(this.quiz).subscribe(response => {
       console.log('Add Quiz',response)
       this.quiz = response;

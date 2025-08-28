@@ -1,41 +1,52 @@
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz – Music Mentor</title>
 </head>
-
 <body>
   <div class="quiz-container">
-    <h1>Quiz: Podstawy Teorii Muzyki</h1>
-    <p class="description">Ten quiz sprawdza Twoją wiedzę z zakresu interwałów i skal.</p>
+    <h1>{{ quizTitle }}</h1>
+    <p class="description">{{ quizDescription }}</p>
 
-    <div class="question-box">
-      <h2>Pytanie {{ currentQuestionIndex + 1 }} z {{ questions.length }}</h2>
-      <p>{{ questions[currentQuestionIndex].text }}</p>
+    <form *ngIf="questionList && questionList.length > 0 && currentQuestionIndex < questionList.length"
+          (ngSubmit)="next()" #quizForm="ngForm" class="question-box">
+
+      <h2>Pytanie {{ currentQuestionIndex + 1 }} z {{ questionList.length }}</h2>
+      <p class="question">{{ questionList[currentQuestionIndex].questionTitle }}</p>
 
       <div class="options">
-        <label *ngFor="let opt of questions[currentQuestionIndex].options">
-          <input
-            type="radio"
-            name="answer"
-            [(ngModel)]="selectedOption"
-            [value]="opt"
-          />
-          {{ opt }}
+        <label>
+          <input type="radio" name="answer1" [(ngModel)]="selectedOption"
+                 value="answer1" required />
+          {{ questionList[currentQuestionIndex].answer1 }}
+        </label>
+        <label>
+          <input type="radio" name="answer2" [(ngModel)]="selectedOption"
+                 value="answer2" required />
+          {{ questionList[currentQuestionIndex].answer2 }}
+        </label>
+        <label>
+          <input type="radio" name="answer3" [(ngModel)]="selectedOption"
+                 value="answer3" required />
+          {{ questionList[currentQuestionIndex].answer3 }}
+        </label>
+        <label>
+          <input type="radio" name="answer4" [(ngModel)]="selectedOption"
+                 value="answer4" required />
+          {{ questionList[currentQuestionIndex].answer4 }}
         </label>
       </div>
 
-      <div class="actions">
-        <button
-          class="btn"
-          (click)="next()"
-          [disabled]="!selectedOption"
-        >
-          Dalej
-        </button>
+      <div *ngIf="{{currentQuestionIndex + 1}} < {{questionList.length}}" class="actions">
+        <button (click)="" type="submit" [disabled]="!selectedOption">Dalej</button>
       </div>
-    </div>
+
+      <div *ngIf="{{currentQuestionIndex + 1}} == {{questionList.length}}" class="actions">
+        <button (click)="" type="submit" [disabled]="!selectedOption">Zakończ</button>
+      </div>
+    </form>
   </div>
 </body>
 </html>

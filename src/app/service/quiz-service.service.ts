@@ -17,7 +17,11 @@ export class QuizServiceService {
     return this.http.post(`${this.baseUrl}/addQuestions`, question, { withCredentials: true });
   }
   getQuizById(id:any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getQuizById`, id);
+    const params = new HttpParams().set('id', id.toString());
+    return this.http.get(`${this.baseUrl}/getQuizById`, {
+      params,
+      withCredentials: true
+    });
   }
   getQuizzesByUserId(userId: number): Observable<any> {
   const params = new HttpParams().set('userId', userId.toString());

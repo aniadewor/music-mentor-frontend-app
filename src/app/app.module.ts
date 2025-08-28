@@ -12,6 +12,7 @@ import { QuizListComponent } from './quiz-list/quiz-list.component';
 import { QuizSolveComponent } from './quiz-solve/quiz-solve.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfilComponent } from './profil/profil.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ProfilComponent } from './profil/profil.component';
     QuizListComponent,
     QuizSolveComponent,
     SettingsComponent,
-    ProfilComponent
+    ProfilComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

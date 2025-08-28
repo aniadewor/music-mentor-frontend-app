@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'quiz', component: QuizViewComponent},
   { path: 'quizAdd', component: QuizAddComponent},
   { path: 'quiz-list', component: QuizListComponent },
-  { path: 'quiz-solve', component: QuizSolveComponent },
+  { path: 'quiz-solve/:id', component: QuizSolveComponent },
    { path: 'settings', component: SettingsComponent },
    {path: 'profil', component: ProfilComponent},
 ];

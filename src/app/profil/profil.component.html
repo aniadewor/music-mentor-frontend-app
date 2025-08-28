@@ -6,6 +6,7 @@
 </head>
 <body>
   <div class="container">
+     
     <div class="left">
       <h1>Twój profil</h1>
       <p>Dane użytkownika</p>
@@ -18,6 +19,7 @@
       <p><strong>Imię i nazwisko:</strong> {{ profile.name }} {{ profile.lastName }}</p>
       <p><strong>Rola:</strong> {{ profile.role === 'STUDENT' ? 'Uczeń' : 'Nauczyciel' }}</p>
       <p><strong>Szkoła:</strong> {{ profile.schoolName }}</p>
+      <p *ngIf="user.role === Role.STUDENT"><strong>Klasa:</strong> {{ profile.className }}</p>
       <p><strong>Adres e-mail:</strong> {{ profile.email }}</p>
       </div>
     </div>

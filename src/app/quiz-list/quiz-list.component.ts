@@ -26,6 +26,7 @@ export class QuizListComponent implements OnInit {
   selectedQuiz: Quiz | null = null;
   assigningClasses: string[] = [];
   Role = Role;
+  quizId: number = 0; 
 
  constructor(private quizService: QuizServiceService, private userStateService: UserStateService,private userService: UserServiceService,) {}
 
@@ -44,6 +45,7 @@ ngOnInit(): void {
       .subscribe(quizzes => {
           console.log('ODEBRANE QUIZY:', quizzes);
           this.quizzes = quizzes;
+          this.quizId= quizzes.id; 
           console.log(this.quizzes)
         },
       )};
@@ -88,7 +90,7 @@ saveClassAssignment(quiz: Quiz) {
   });
 }
 
-// Anuluje przypisywanie klas, zamyka panel i czyści tymczasowe dane.
+
 cancelAssignClass() {
   this.selectedQuiz = null;
   this.assigningClasses = [];

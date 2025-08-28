@@ -1,25 +1,6 @@
 <body>
   <div class="dashboard-container">
-  <aside class="sidebar">
-      <h2>Music Mentor</h2>
-      <nav>
-          <ul>
-              <li><a href="#" class="active">Panel Główny</a></li>
-               <li><a routerLink="/quiz-list">Moje Quizy</a>
-          </li>
-              <li><a href="#">Moje Lekcje</a></li>
-              <li><a href="#">Twórz Lekcje</a></li>
-              <li><a routerLink="/quizAdd">Twórz Quizy</a></li>
-              <li><a href="#">Postępy Uczniów</a></li>
-              <li><a routerLink="/profil">Profil</a></li>
-               <li *ngIf="user.role === Role.TEACHER">
-              <a routerLink="/settings">Ustawienia</a></li>
-              
-
-              <li><a href="#">Wyloguj się</a></li>
-          </ul>
-      </nav>
-  </aside>
+  <app-sidebar></app-sidebar>
 
   <main class="main-content" *ngIf="user.role === Role.TEACHER">
       <header>
