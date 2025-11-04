@@ -1,0 +1,86 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 30px 14px;
+  background: linear-gradient(135deg, #004080, #0074D9);
+  font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+}
+
+/* GŁÓWNY KONTENER LEKCJI */
+.lesson-container {
+  width: 1100px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  padding: 50px;
+  box-sizing: border-box;
+  animation: fadeIn 0.4s ease-in;
+}
+
+/* TYTUŁ LEKCJI */
+.lesson-container h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #004174;
+  margin: 0 0 18px 0;
+  text-align: center;
+}
+
+/* META INFORMACJE (autor, data) */
+.lesson-meta {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 14px;
+  color: #5C5D5F;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.lesson-meta span {
+  font-weight: 600;
+}
+
+/* OPIS LEKCJI */
+.lesson-description {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* TREŚĆ LEKCJI */
+.lesson-content {
+  font-size: 15px;
+  color: #222;
+  line-height: 1.7;
+  padding: 20px 24px;
+  background: #F8F9FA;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.08);
+  white-space: pre-line; /* żeby zachować entery */
+}
+
+/* ANIMACJA */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSYWNOŚĆ */
+@media (max-width: 768px) {
+  .lesson-container {
+    padding: 28px 20px;
+  }
+  .lesson-container h1 {
+    font-size: 24px;
+  }
+  .lesson-description { font-size: 15px; }
+  .lesson-content { font-size: 14px; }
+}

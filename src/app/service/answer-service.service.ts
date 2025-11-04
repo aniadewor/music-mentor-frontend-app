@@ -19,7 +19,7 @@ export class AnswerServiceService {
      return this.http.post(`${this.baseUrl}/saveQuizAnswer`,{}, {params, withCredentials: true });
   }
   
-checkQuizCorrectAnswer(quizId:number, userId: number): Observable<any>{
+checkQuizCorrectAnswer(quizId:string, userId: number): Observable<any>{
         let params = new HttpParams()
         .set('quizId', quizId.toString())
         .set('userId', userId.toString())

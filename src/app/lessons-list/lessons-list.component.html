@@ -1,0 +1,21 @@
+<div class="dashboard-container">
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+        <header>
+            <h1>Moje Lekcje</h1>
+            <p>Lista Twoich lekcji.</p>
+        </header>
+
+        <p>Liczba lekcji: {{ lessonsList.length }}</p>
+
+        <section class="cards">
+            <div class="card" *ngFor="let lesson of lessonsList">
+                <h3>{{ lesson.title }}</h3>
+                <p>{{ lesson.description }}</p>
+                <button [routerLink]="['/lesson-view', lesson.id]">Otwórz</button>
+                </div>
+        </section>
+
+    </main>
+</div>

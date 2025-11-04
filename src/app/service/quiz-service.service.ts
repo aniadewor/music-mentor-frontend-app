@@ -47,4 +47,18 @@ getQuizzesByClass(className: string, userId: number): Observable<any>{
     .set('userId', userId.toString());
   return this.http.post(`${this.baseUrl}/getQuizzesByClass`,{}, {params, withCredentials: true});
 }
+getUserQuizDate(userId: string): Observable<any>{
+ const params = new HttpParams().set('userId', userId);
+ return this.http.get(`${this.baseUrl}/getUserQuizDate`, {
+    params,
+    withCredentials: true
+  });
+}
+getTeacherQuizDate(className: string): Observable<any>{
+  const params = new HttpParams().set('className', className);
+  return this.http.get(`${this.baseUrl}/getTeacherQuizDate`, {
+    params,
+    withCredentials: true
+});
+}
 }

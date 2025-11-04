@@ -1,0 +1,185 @@
+/* TŁO KOMPONENTU */
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 30px 14px;
+  background: linear-gradient(135deg, #004080, #0074D9);
+  font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+}
+
+/* KARTA Z FORMULARZEM */
+form {
+  width: 1200px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  padding: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* NAGŁÓWEK OPCJONALNIE – jeśli chcesz, dodaj <h2> w HTML */
+form h2 {
+  margin: 0 0 8px;
+  color: #0062B2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  text-align: center;
+  font-weight: 800;
+}
+
+/* ETYKIETY */
+label {
+  color: #004174;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 10px;
+}
+
+/* POLA TEKSTOWE */
+input[type="text"],
+textarea,
+input[id="title"],
+input[id="className"],
+textarea[id="description"],
+textarea[id="content"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #68A3E0;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow .2s, border-color .2s;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* FOCUS */
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #297AD0;
+  box-shadow: 0 0 0 4px rgba(41,122,208,.15);
+}
+
+/* WALIDACJA ANGULAR */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #d93025;
+  box-shadow: 0 0 0 3px rgba(217,48,37,.12);
+}
+
+/* KOMUNIKATY BŁĘDÓW (Twoje <div> pod polami) */
+form > div {
+  color: #d93025;
+  font-size: 13px;
+  margin: 2px 0 8px;
+  min-height: 18px; /* żeby układ nie skakał */
+}
+
+/* FILE INPUT */
+input[type="file"] {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px dashed #68A3E0;
+  border-radius: 10px;
+  background: #F8FBFF;
+  cursor: pointer;
+}
+input[type="file"]::-webkit-file-upload-button {
+  border: 0;
+  padding: 10px 14px;
+  margin-right: 10px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+input[type="file"]:hover {
+  background: #F2F7FF;
+}
+
+/* PRZYCISK ZAPISU */
+button[type="submit"],
+button {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: .2px;
+  box-shadow: 0 5px 14px rgba(41,122,208,.18);
+  transition: transform .12s ease, background .2s, box-shadow .2s, color .2s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #005BBB, #297AD0);
+  color: #FFD700;
+  box-shadow: 0 8px 20px rgba(41,122,208,.22);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  color: #fff;
+  box-shadow: none;
+}
+/* przyciski obok siebie */
+form .button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+form .button-row .btn {
+  width: auto !important;
+  min-width: 160px;
+  flex: 0 0 auto;
+}
+
+
+
+/* RESPONSYWNOŚĆ */
+@media (max-width: 1024px) {
+  form {
+    padding: 38px 28px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  form {
+    padding: 26px 18px;
+    gap: 10px;
+  }
+  label { font-size: 14px; }
+  input[type="text"], textarea { font-size: 15px; }
+  button { font-size: 15px; padding: 11px 16px; }
+}
+
+/* DROBNE DODATKI */
+::placeholder {
+  color: #9ab9df;
+}

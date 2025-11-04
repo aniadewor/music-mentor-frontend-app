@@ -1,0 +1,18 @@
+<div class="lesson-container">
+  <h1>{{ lesson.title }}</h1>
+
+  <div class="lesson-meta">
+    <span>Autor: {{ lesson.author }}</span>
+    <span>Data: {{ lesson.creationDate | date:'dd.MM.yyyy' }}</span>
+  </div>
+
+  <div class="lesson-description">
+    {{ lesson.description }}
+  </div>
+
+  <div class="lesson-content">
+    {{ lesson.content }}
+  </div>
+<!-- 
+  <a [href]="imageUrl" target="_blank">Otwórz plik</a> -->
+</div>

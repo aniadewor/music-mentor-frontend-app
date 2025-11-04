@@ -1,0 +1,35 @@
+<div *ngIf="user.role === Role.STUDENT" >
+  <header>
+      <h1>Moje Quizy</h1>
+      <p>Lista Twoich postępów.</p>
+    </header>
+
+     <section class="cards">
+            <div class="card" *ngFor="let score of scoreList">
+                <h3>{{ score.title }}</h3>
+                <p>{{ score.score }}/{{ score.scoreSum }}</p>
+                </div>
+        </section>
+</div>
+<div *ngIf="user.role === Role.TEACHER">
+     <select [(ngModel)]="className" name="className" >
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+    </select>
+
+    <button type="button" class="btn" (click)="getTeacherQuizDate()">Wyszukaj</button>
+
+        <section class="cards">
+            <div class="card" *ngFor="let score of studentScoreList">
+                <h3>{{ score.title }}</h3>
+                <p>{{ score.score }}/{{ score.scoreSum }}</p>
+                <p>{{ score.name}}</p>
+                <p>{{ score.lastName}}</p>
+                </div>
+        </section>
+</div>

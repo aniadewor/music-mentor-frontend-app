@@ -1,0 +1,129 @@
+/* TŁO I OBRAMOWANIE WIDOKU */
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 30px 14px;
+  background: linear-gradient(135deg, #004080, #0074D9);
+  font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+}
+
+/* GŁÓWNY KONTENER (SIDEBAR + TREŚĆ) */
+.dashboard-container {
+  display: flex;
+  width: 1250px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  min-height: 88vh;
+}
+
+/* PRAWA KOLUMNA – TREŚĆ */
+.main-content {
+  flex: 1;
+  padding: 48px 50px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* NAGŁÓWEK */
+header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  color: #004174;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+}
+
+header p {
+  font-size: 16px;
+  color: #5C5D5F;
+  margin: 0 0 32px 0;
+}
+
+/* LICZNIK */
+.main-content > p {
+  margin: 0 0 24px 0;
+  color: #333;
+  font-weight: 600;
+}
+
+/* SIATKA KART */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  justify-content: center;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* KARTA LEKCJI */
+.card {
+  background: #F8F9FA;
+  padding: 24px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+  text-align: center;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  font-size: 20px;
+  color: #0062B2;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+}
+
+.card p {
+  font-size: 14px;
+  color: #5C5D5F;
+  margin: 0 0 18px 0;
+}
+
+/* PRZYCISK NA KARCIE */
+.card button {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: .3px;
+  box-shadow: 0 2px 6px rgba(41, 122, 208, 0.12);
+  transition: background .2s, box-shadow .2s, color .2s, transform .1s;
+  outline: none;
+}
+
+.card button:hover {
+  background: linear-gradient(135deg, #005BBB, #297AD0);
+  color: #FFD700;
+  box-shadow: 0 4px 14px rgba(41, 122, 208, 0.18);
+}
+
+.card button:active {
+  transform: translateY(1px);
+}
+
+/* RESPONSYWNOŚĆ */
+@media (max-width: 1024px) {
+  .main-content { padding: 38px 28px; }
+  .dashboard-container { border-radius: 12px; }
+}
+
+@media (max-width: 768px) {
+  .main-content { padding: 26px 18px; }
+  header h1 { font-size: 26px; }
+  .cards { gap: 20px; }
+}

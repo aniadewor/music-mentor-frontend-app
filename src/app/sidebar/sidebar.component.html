@@ -14,12 +14,12 @@
     <ul>
       <li><a routerLink="/dashboard" routerLinkActive="active">Panel Główny</a></li>
       <li><a routerLink="/quiz-list" routerLinkActive="active">Moje Quizy</a></li>
-      <li><a href="#">Moje Lekcje</a></li>
-      <li><a href="#">Twórz Lekcje</a></li>
-      <li><a routerLink="/quizAdd" routerLinkActive="active">Twórz Quizy</a></li>
-      <li><a href="#">Postępy Uczniów</a></li>
+      <li><a  routerLink="/lesson-list" routerLinkActive="active">Moje Lekcje</a></li>
+      <li *ngIf="user.role === Role.TEACHER"><a  routerLink="/lesson-create"routerLinkActive="active">Twórz Lekcje</a></li>
+      <li *ngIf="user.role === Role.TEACHER"><a routerLink="/quizAdd" routerLinkActive="active">Twórz Quizy</a></li>
+      <li><a routerLink="/student-progress" routerLinkActive="active">Postępy Uczniów</a></li>
       <li><a routerLink="/profil">Profil</a></li>
-      <li><a routerLink="/settings" routerLinkActive="active">Ustawienia</a></li>
+     <li><a routerLink="/settings" routerLinkActive="active">Ustawienia</a></li>
       <li><a href="#">Wyloguj się</a></li>
     </ul>
   </nav>

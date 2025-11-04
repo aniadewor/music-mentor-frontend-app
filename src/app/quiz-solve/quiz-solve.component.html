@@ -6,12 +6,15 @@
   <title>Quiz – Music Mentor</title>
 </head>
 <body>
-  <div class="quiz-container">
+  <div class="quiz-container" *ngIf="!showResult">
     <h1>{{ quizTitle }}</h1>
     <p class="description">{{ quizDescription }}</p>
 
-    <form *ngIf="questionList && questionList.length > 0 && currentQuestionIndex < questionList.length"
-          (ngSubmit)="next()" #quizForm="ngForm" class="question-box">
+    <!-- <form *ngIf="questionList && questionList.length > 0 && currentQuestionIndex < questionList.length" -->
+          <!-- (ngSubmit)="next()" #quizForm="ngForm" class="question-box"> -->
+
+          <form *ngIf="questionList && questionList.length > 0 && currentQuestionIndex < questionList.length && !showResult"
+      (ngSubmit)="next()" #quizForm="ngForm" class="question-box">
 
       <h2>Pytanie {{ currentQuestionIndex + 1 }} z {{ questionList.length }}</h2>
       <p class="question">{{ questionList[currentQuestionIndex].questionTitle }}</p>
@@ -39,14 +42,33 @@
         </label>
       </div>
 
-      <div *ngIf="{{currentQuestionIndex + 1}} < {{questionList.length}}" class="actions">
-        <button (click)="" type="submit" [disabled]="!selectedOption">Dalej</button>
+      <div *ngIf="currentQuestionIndex + 1 < questionList.length" class="actions">
+        <button class="btn" type="submit" [disabled]="!selectedOption">Dalej</button>
       </div>
 
-      <div *ngIf="{{currentQuestionIndex + 1}} == {{questionList.length}}" class="actions">
-        <button (click)="" type="submit" [disabled]="!selectedOption">Zakończ</button>
+      <div *ngIf="currentQuestionIndex + 1 == questionList.length" class="actions">
+        <button class="btn" (click)="saveQuizAnswer()" type="submit" [disabled]="!selectedOption">Zakończ</button>
       </div>
     </form>
   </div>
+
+<!-- OKNO PODSUMOWANIA QUIZU -->
+<div class="result-card" *ngIf="showResult">
+  <h2>{{ quizTitle }}</h2>
+  <p class="description">{{ quizDescription }}</p>
+
+  <div class="score-main">
+    <span class="score">{{ scoreSum }}</span>
+    <span class="of">/ {{ quizScore }}</span>
+  </div>
+
+  <div class="progress">
+    <div class="bar" [style.width.%]="(scoreSum / quizScore) * 100"></div>
+  </div>
+
+  <p class="percent">{{ ((scoreSum / quizScore) * 100) | number:'1.0-0' }}%</p>
+
+  <button class="btn" type="button" [routerLink]="['/quiz-list']">Powrót</button>
+</div>
 </body>
 </html>

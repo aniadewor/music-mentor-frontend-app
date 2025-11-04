@@ -1,0 +1,126 @@
+/* TŁO CAŁEGO WIDOKU */
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 30px 14px;
+  background: linear-gradient(135deg, #004080, #0074D9);
+  font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+}
+
+/* BIAŁA „RAMA” DLA KAŻDEGO Z DWÓCH BLOKÓW (student / teacher) */
+:host > div {
+  width: 1250px;
+  max-width: 100%;
+  margin: 0 auto 26px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.15);
+  padding: 42px 48px;
+  box-sizing: border-box;
+}
+
+/* NAGŁÓWEK */
+header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+header h1 {
+  margin: 0 0 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  color: #0B4F9E;
+}
+header p {
+  margin: 0;
+  color: #5C5D5F;
+  font-size: 16px;
+}
+
+/* SIATKA KART */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 28px 34px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* POJEDYNCZA KARTA */
+.card {
+  background: #F8F9FA;
+  border-radius: 20px;
+  padding: 26px 24px;
+  text-align: center;
+  box-shadow: 0 18px 38px rgba(13,30,67,.08), 0 4px 10px rgba(13,30,67,.06);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 46px rgba(13,30,67,.12), 0 8px 16px rgba(13,30,67,.08);
+}
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0B4F9E;
+}
+.card p {
+  margin: 0;
+  font-size: 14px;
+  color: #60646b;
+}
+
+/* WIDOK NAUCZYCIELA: SELECT + PRZYCISK */
+select[name="className"] {
+  display: inline-block;
+  min-width: 160px;
+  padding: 10px 12px;
+  margin: 0 10px 20px 0;
+  border: 1px solid #68A3E0;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: box-shadow .18s, border-color .18s;
+}
+select[name="className"]:focus {
+  border-color: #297AD0;
+  box-shadow: 0 0 0 4px rgba(41,122,208,.15);
+}
+
+.btn,
+button.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(41,122,208,.22);
+  transition: background .2s, color .2s, box-shadow .2s, transform .08s;
+}
+.btn:hover {
+  background: linear-gradient(135deg, #005BBB, #297AD0);
+  color: #FFD700;
+  box-shadow: 0 10px 20px rgba(41,122,208,.28);
+}
+.btn:active { transform: translateY(1px); }
+
+/* RESPONSYWNOŚĆ */
+@media (max-width: 980px) {
+  :host > div { padding: 34px 28px; }
+  .cards { grid-template-columns: 1fr; max-width: 560px; gap: 22px; }
+  header h1 { font-size: 28px; }
+}
+@media (max-width: 520px) {
+  :host > div { padding: 24px 18px; }
+  .card { border-radius: 16px; padding: 22px 18px; }
+  .card h3 { font-size: 18px; }
+}
