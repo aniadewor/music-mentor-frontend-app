@@ -19,6 +19,6 @@ export class FileService {
       return this.http.post(`${this.baseUrl}/upload`, upload, { params, withCredentials: true });
   }
   getFile(lessonId:any): Observable<any>{
-     return this.http.get(`${this.baseUrl}/${lessonId}`, { withCredentials: true });}
+     return this.http.get(`${this.baseUrl}/${lessonId}`, { withCredentials: true, responseType: 'blob'});}
   }
 

@@ -16,3 +16,10 @@
 <!-- 
   <a [href]="imageUrl" target="_blank">Otwórz plik</a> -->
 </div>
+
+<div *ngIf="photoUrl; else loading">
+  <img [src]="photoUrl" alt="User photo" class="rounded shadow-md" width="200">
+</div>
+<ng-template #loading>
+  <p>Ładowanie zdjęcia...</p>
+</ng-template>

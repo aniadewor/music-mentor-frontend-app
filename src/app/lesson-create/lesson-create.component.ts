@@ -30,8 +30,6 @@ export class LessonCreateComponent {
       this.user.id = currentUser.id;
       this.userService.getUserByEmail(currentUser.email).subscribe(userDate => {
         this.user.id = userDate.id;
-        console.log(this.user.id);
-        console.log(currentUser);
       }
       )
     }
@@ -43,11 +41,9 @@ export class LessonCreateComponent {
       return;
     }
         formData.append('file', this.file);
-    console.log(this.lesson);
-    console.log(formData);
-    console.log(this.file);
     this.lessonsService.createLesson(this.lesson,this.user.id, this.file).subscribe(lesson => {
       console.log(lesson);
+       this.router.navigate(['/lesson-list']);
     })
   }
 
