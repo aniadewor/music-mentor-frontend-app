@@ -1,35 +1,88 @@
-<div *ngIf="user.role === Role.STUDENT" >
-  <header>
-      <h1>Moje Quizy</h1>
-      <p>Lista Twoich postępów.</p>
+<html>
+  <body>
+ <div class="dashboard-container">
+  <!-- LEWY PANEL -->
+  <app-sidebar></app-sidebar>
+
+  <!-- PRAWA STRONA -->
+  <main class="main-content">
+    <header>
+      <h1>Postępy w quizach</h1>
+
+      <p *ngIf="user.role === Role.STUDENT">
+        Zobacz swoje wyniki z rozwiązanych quizów.
+      </p>
+
+      <p *ngIf="user.role === Role.TEACHER">
+        Wybierz klasę i sprawdź wyniki swoich uczniów.
+      </p>
+
+      <p *ngIf="!user.role">
+        Ładowanie danych użytkownika...
+      </p>
     </header>
 
-     <section class="cards">
-            <div class="card" *ngFor="let score of scoreList">
-                <h3>{{ score.title }}</h3>
-                <p>{{ score.score }}/{{ score.scoreSum }}</p>
-                </div>
-        </section>
-</div>
-<div *ngIf="user.role === Role.TEACHER">
-     <select [(ngModel)]="className" name="className" >
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-    </select>
+    <!-- ============================================== -->
+    <!-- WIDOK UCZNIA -->
+    <!-- ============================================== -->
+    <section *ngIf="user.role === Role.STUDENT" class="cards-section">
+      <h2 class="section-title">Twoje wyniki</h2>
 
-    <button type="button" class="btn" (click)="getTeacherQuizDate()">Wyszukaj</button>
+      <div class="cards">
+        <div class="card" *ngFor="let score of scoreList">
+          <h3>{{ score.title }}</h3>
 
-        <section class="cards">
-            <div class="card" *ngFor="let score of studentScoreList">
-                <h3>{{ score.title }}</h3>
-                <p>{{ score.score }}/{{ score.scoreSum }}</p>
-                <p>{{ score.name}}</p>
-                <p>{{ score.lastName}}</p>
-                </div>
-        </section>
+          <p class="score">
+            Wynik: <strong>{{ score.score }}/{{ score.scoreSum }}</strong> punktów
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- WIDOK NAUCZYCIELA -->
+    <!-- ============================================== -->
+    <section *ngIf="user.role === Role.TEACHER" class="cards-section">
+
+      <!-- Filtr klasy -->
+      <div class="filter-row">
+        <label for="className">Wybierz klasę:</label>
+
+        <div class="custom-select">
+          <select [(ngModel)]="className" id="className" name="className">
+            <option value="" disabled selected>– wybierz –</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn" (click)="getTeacherQuizDate()">
+          Wyszukaj
+        </button>
+      </div>
+
+      <h2 class="section-title">Wyniki uczniów</h2>
+
+      <div class="cards">
+        <div class="card" *ngFor="let score of studentScoreList">
+          <h3>{{ score.title }}</h3>
+
+          <p class="student-name">
+            Uczeń: <strong>{{ score.name }} {{ score.lastName }}</strong>
+          </p>
+
+          <p class="score">
+            Wynik: <strong>{{ score.score }}/{{ score.scoreSum }}</strong> punktów
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
+</body>
+</html>

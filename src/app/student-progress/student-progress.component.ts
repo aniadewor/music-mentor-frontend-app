@@ -8,39 +8,40 @@ import { User } from '../models/user.model';
 @Component({
   selector: 'app-student-progress',
   templateUrl: './student-progress.component.html',
-  styleUrl: './student-progress.component.css'
+  styleUrls: ['./student-progress.component.css'] // <— tu zmiana
 })
 export class StudentProgressComponent {
+  scoreList: any[] = [];
+  studentId: string = '';
+  className: string = '';
+  studentScoreList: any[] = [];
+  user: User = new User();
+  Role = Role;
 
-scoreList: any[] = [];
-studentId: string = '';
-className: string = '';
-studentScoreList: any[] = [];
-user: User = new User();
-Role = Role;
-
-constructor(private userStateService: UserStateService, private userService: UserServiceService, private quizService: QuizServiceService){}
+  constructor(
+    private userStateService: UserStateService,
+    private userService: UserServiceService,
+    private quizService: QuizServiceService
+  ) {}
 
   ngOnInit(): void {
     const currentUser = this.userStateService.getCurrentUser();
     if (currentUser && currentUser.email) {
       const email = currentUser.email;
       this.userService.getUserByEmail(email).subscribe(userDate => {
-        console.log(userDate);
-      this.studentId = userDate.id;
-      this.user = userDate;
-      console.log(userDate.id);
-      this.quizService.getUserQuizDate(this.studentId).subscribe(userQuizList => {
-        console.log(userQuizList);
-        this.scoreList = userQuizList;
-      })
-    })}
-    }
+        this.studentId = userDate.id;
+        this.user = userDate;
 
-    getTeacherQuizDate(){
-        this.quizService.getTeacherQuizDate(this.className).subscribe(studentQuizList => {
-      this.studentScoreList = studentQuizList;
-      console.log(this.studentScoreList);
-    })
+        this.quizService.getUserQuizDate(this.studentId).subscribe(userQuizList => {
+          this.scoreList = userQuizList;
+        });
+      });
     }
   }
+
+  getTeacherQuizDate() {
+    this.quizService.getTeacherQuizDate(this.className).subscribe(studentQuizList => {
+      this.studentScoreList = studentQuizList;
+    });
+  }
+}
