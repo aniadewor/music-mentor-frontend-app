@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <title>Profil użytkownika</title>
-</head>
 <body>
-  <div class="container">
-     
-    <div class="left">
-      <h1>Twój profil</h1>
-      <p>Dane użytkownika</p>
-    </div>
+ <div class="dashboard-container">
+  <!-- LEWY PANEL -->
+  <app-sidebar></app-sidebar>
 
-    <div class="right">
-      <div class="form-container">
+  <!-- PRAWA STRONA -->
+  <main class="main-content">
+
+    <header>
+      <h1>Twój profil</h1>
+      <p>Dane konta użytkownika</p>
+    </header>
+
+    <section class="profile-section">
+      <div class="profile-card">
         <h2>Dane profilu</h2>
 
-      <p><strong>Imię i nazwisko:</strong> {{ profile.name }} {{ profile.lastName }}</p>
-      <p><strong>Rola:</strong> {{ profile.role === 'STUDENT' ? 'Uczeń' : 'Nauczyciel' }}</p>
-      <p><strong>Szkoła:</strong> {{ profile.schoolName }}</p>
-      <p *ngIf="user.role === Role.STUDENT"><strong>Klasa:</strong> {{ profile.className }}</p>
-      <p><strong>Adres e-mail:</strong> {{ profile.email }}</p>
+        <p><strong>Imię i nazwisko:</strong> {{ profile.name }} {{ profile.lastName }}</p>
+
+        <p><strong>Rola:</strong>
+          {{ profile.role === 'STUDENT' ? 'Uczeń' : 'Nauczyciel' }}
+        </p>
+
+        <p><strong>Szkoła:</strong> {{ profile.schoolName }}</p>
+
+        <p *ngIf="profile.role === 'STUDENT'">
+          <strong>Klasa:</strong> {{ profile.className }}
+        </p>
+
+        <p><strong>Adres e-mail:</strong> {{ profile.email }}</p>
       </div>
-    </div>
-  </div>
+    </section>
+
+  </main>
+</div>
+
 </body>
 </html>

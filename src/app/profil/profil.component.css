@@ -1,63 +1,113 @@
 html, body {
-  height: 100vh;
-  width: 100vw;
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #004080, #0074D9); /* Poprawiony gradient */
   font-family: 'Nunito', sans-serif;
-  overflow: hidden;
-}
+  background: #0062B2;
+  color: #333;
+  overflow-x: hidden;
+  min-height: 100vh;
 
-.container {
+}
+/* === DASHBOARD (tak jak na innych stronach) === */
+.dashboard-container {
   display: flex;
-  width: 900px;
-  max-width: 90%;
+  width: 1250px;
+  max-width: 100%;
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  align-items: stretch;
-  height: 400px;
-  margin: 40px auto;
+  min-height: 90vh;
+  margin: 30px auto;
 }
 
-.left {
+/* PRAWA STRONA */
+.main-content {
   flex: 1;
-  background: #004174;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 40px;
+  padding: 50px;
   text-align: center;
 }
 
-.left h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  font-weight: 700;
+/* Niebieskie tło pod nagłówkiem */
+header {
+  background: linear-gradient(135deg, #00498d, #006ed1);
+  padding: 30px 20px;
+  border-radius: 14px;
+  color: white;
+  margin-bottom: 40px;
+  box-shadow: 0 6px 16px rgba(0, 60, 138, 0.25);
 }
 
-.right {
-  flex: 1;
-  padding: 50px;
+header h1,
+header p {
+  color: white !important;
+}
+
+
+/* === KARTA PROFILU === */
+.profile-section {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box;
+  align-items: center;
 }
 
-.form-container {
+.profile-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 460px;
+  background: #F8F9FA;
+  padding: 30px 40px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(13, 30, 67, 0.12),
+              0 4px 12px rgba(13, 30, 67, 0.06);
+  text-align: left;
 }
 
-p {
-  font-size: 18px;
-  margin-bottom: 12px;
+.profile-card h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #0B4F9E;
+}
+
+.profile-card p {
+  font-size: 16px;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+.profile-card strong {
+  color: #004174;
+}
+
+/* === RESPONSYWNOŚĆ === */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    flex-direction: column;
+    width: 95%;
+    padding: 0 20px;
+  }
+
+  .main-content {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 0 10px;
+    margin: 20px auto;
+  }
+
+  .main-content {
+    padding: 20px 10px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  .profile-card {
+    padding: 24px 20px;
+  }
 }
