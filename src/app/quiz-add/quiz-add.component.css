@@ -13,88 +13,80 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto;
 }
-
-.container {
+/* === DASHBOARD === */
+.dashboard-container {
   display: flex;
-  width: 1200px;
+  width: 1250px;
   max-width: 100%;
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  align-items: stretch;
-  height: 700px;
+  min-height: 90vh;
+  margin: 30px auto;
 }
 
-.left {
+/* PRAWA STRONA */
+.main-content {
   flex: 1;
-  background: #004174;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0px;
+  padding: 50px;
   text-align: center;
 }
 
-.left h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  font-weight: 700;
+header {
+  margin-bottom: 30px;
 }
 
-.right {
-  flex: 2;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
-
-.question-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-h2 {
-  margin-bottom: 20px;
-  color: #0062B2;
+header h1 {
   font-family: 'Montserrat', sans-serif;
-}
-
-input[type="text"],
-textarea {
-  width: 100%;
-  min-width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border: 1px solid #68A3E0;
-  border-radius: 5px;
-  font-size: 16px;
-  box-sizing: border-box;
-  flex: none;
-}
-
-.btn {
-  padding: 12px;
-  width: 100%;
-  background: linear-gradient(135deg, #297AD0, #005BBB);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 15px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
+  font-size: 32px;
+  color: #004174;
   font-weight: bold;
 }
 
+header p {
+  font-size: 16px;
+  color: #5c5d5f;
+}
+
+/* === SEKCJA QUIZU === */
+.quiz-section {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  background: #F8F9FA;
+  padding: 30px 40px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(13, 30, 67, 0.12);
+}
+
+.quiz-section h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0b4f9e;
+  margin-bottom: 25px;
+}
+
+.question-container label {
+  margin-top: 12px;
+  font-weight: 600;
+  display: block;
+}
+
+input[type="text"],
+textarea,
+input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 14px;
+  border: 1px solid #68A3E0;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* === OPCJE PYTAŃ === */
 .option-row {
   display: flex;
   align-items: center;
@@ -102,108 +94,40 @@ textarea {
   margin-bottom: 10px;
 }
 
-.option-row input[type="radio"] {
-  transform: scale(1.3);
-  margin: 0;
+/* === PRZYCISKI === */
+.btn {
+  padding: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.2s ease;
 }
 
-.option-row input[type="text"] {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #68A3E0;
-  border-radius: 5px;
-  font-size: 16px;
+.btn:hover {
+  background: linear-gradient(135deg, #005BBB, #297AD0);
+  color: #FFD700;
 }
 
 .error-message {
   color: red;
   font-size: 14px;
-  margin: 5px 0 10px 0;
-  min-height: 18px;
 }
 
-
-input.ng-invalid.ng-touched,
-textarea.ng-invalid.ng-touched {
-  border-color: red;
-}
-
-@media (max-width: 1024px) {
-  .container {
+/* === RESPONSYWNOŚĆ === */
+@media (max-width: 900px) {
+  .dashboard-container {
     flex-direction: column;
-    height: auto;
-    width: 90%;
-  }
-
-  .left {
-    padding: 40px 30px;
-    text-align: center;
-  }
-
-  .left h1 {
-    font-size: 30px;
-  }
-
-  .right {
-    padding: 40px 30px;
-  }
-
-  .btn {
-    font-size: 15px;
-    padding: 12px;
-  }
-
-  input[type="text"],
-  textarea {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    height: auto;
     width: 95%;
-    border-radius: 12px;
   }
 
-  .left {
-    padding: 30px 20px;
-    text-align: center;
+  .quiz-section {
+    padding: 25px 20px;
   }
-
-  .left h1 {
-    font-size: 26px;
-  }
-
-  .right {
-    padding: 30px 20px;
-  }
-
-  h2 {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .btn {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .option-row {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-
-  input[type="radio"] {
-    transform: scale(1.2);
-  }
-
-  input[type="text"] {
-    font-size: 15px;
-  }
-}
-.btn.save-quiz {
-  margin-bottom: 30px;
 }

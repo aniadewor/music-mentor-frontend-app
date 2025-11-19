@@ -1,68 +1,87 @@
-<body>
-  <div class="container">
-    <div class="left">
-      <h1>Kreator Quizu</h1>
-    </div>
+<html><body>
+<div class="dashboard-container">
+  <!-- LEWY PANEL -->
+  <app-sidebar></app-sidebar>
 
-    <div class="right">
+  <!-- PRAWA STRONA -->
+  <main class="main-content">
+
+    <header>
+      <h1>Kreator Quizu</h1>
+      <p>Utwórz nowy quiz i dodaj pytania</p>
+    </header>
+
+    <section class="quiz-section">
+
       <h2>Tworzenie Quizu</h2>
+
       <div class="question-container">
+
         <label for="quizTitle">Nazwa quizu:</label>
         <input type="text" id="quizTitle" [(ngModel)]="quiz.title" name="quiz.title" required>
+
         <div *ngIf="showValidationMessage && quiz.title === ''" class="error-message">
           Pole nazwy quizu jest wymagane.
         </div>
 
         <label for="quizDescription">Opis quizu:</label>
         <textarea id="quizDescription" [(ngModel)]="quiz.description" name="quizDescription" required></textarea>
+
         <div *ngIf="showValidationMessage && quiz.description === ''" class="error-message">
           Pole opisu quizu jest wymagane.
         </div>
 
         <button type="button" class="btn save-quiz" (click)="saveQuiz()">Zapisz quiz</button>
 
-        <!-- Sekcja pytań – widoczna tylko po zapisaniu quizu -->
+        <!-- Sekcja pytań po zapisaniu quizu -->
         <div *ngIf="quizSaved">
+
           <div id="questionsContainer">
+
             <div *ngFor="let question of questions; let i = index" class="question">
               <label>Pytanie {{ i + 1 }}:</label>
-              <input type="text" [(ngModel)]="question.questionTitle" name="question{{i}}Text" required>
+              <input type="text" [(ngModel)]="question.questionTitle" required>
 
-              <label>Punkty</label>
+              <label>Punkty:</label>
               <input type="number" [(ngModel)]="question.score">
 
               <label>Opcje odpowiedzi:</label>
+
               <div class="options">
 
                 <div class="option-row">
                   <input type="radio" [(ngModel)]="question.correctAnswer" [value]="'answer1'" name="correctAnswer{{i}}">
-                  <input type="text" [(ngModel)]="question.answer1" placeholder="Odpowiedź 1" name="answer1_{{i}}">
+                  <input type="text" [(ngModel)]="question.answer1" placeholder="Odpowiedź 1">
                 </div>
 
                 <div class="option-row">
                   <input type="radio" [(ngModel)]="question.correctAnswer" [value]="'answer2'" name="correctAnswer{{i}}">
-                  <input type="text" [(ngModel)]="question.answer2" placeholder="Odpowiedź 2" name="answer2_{{i}}">
+                  <input type="text" [(ngModel)]="question.answer2" placeholder="Odpowiedź 2">
                 </div>
 
                 <div class="option-row">
                   <input type="radio" [(ngModel)]="question.correctAnswer" [value]="'answer3'" name="correctAnswer{{i}}">
-                  <input type="text" [(ngModel)]="question.answer3" placeholder="Odpowiedź 3" name="answer3_{{i}}">
+                  <input type="text" [(ngModel)]="question.answer3" placeholder="Odpowiedź 3">
                 </div>
 
                 <div class="option-row">
                   <input type="radio" [(ngModel)]="question.correctAnswer" [value]="'answer4'" name="correctAnswer{{i}}">
-                  <input type="text" [(ngModel)]="question.answer4" placeholder="Odpowiedź 4" name="answer4_{{i}}">
+                  <input type="text" [(ngModel)]="question.answer4" placeholder="Odpowiedź 4">
                 </div>
 
               </div>
+
             </div>
 
-            <button type="button" class="btn" (click)="addNewQuestion()" [disabled]="!quizSaved">Dodaj pytanie</button>
-            <button type="button" class="btn" (click)="addQuestion()" [disabled]="">Zakończ</button>
-             <!-- <button type="button" class="btn" (click)="updateQuizScore()" [disabled]="">Podlicz punkty</button> -->
+            <button type="button" class="btn" (click)="addNewQuestion()">Dodaj pytanie</button>
+            <button type="button" class="btn" (click)="addQuestion()">Zakończ</button>
+
           </div>
+
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
+</div>
 </body>
+ </html>
