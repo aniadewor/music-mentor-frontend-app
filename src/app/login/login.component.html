@@ -51,7 +51,7 @@
 
           <input type="password" placeholder="Hasło" name="password" [(ngModel)]="register.password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
           <div *ngIf="registerForm.form.get('password')?.invalid && registerForm.form.get('password')?.touched" class="error">
-            Hasło musi mieć min. 8 znaków, 1 wielką literę, 1 cyfrę i 1 znak specjalny (!@#$%^&*).
+            Hasło musi mieć min. 8 znaków, 1 wielką literę, 1 cyfrę i 1 znak specjalny (!&#64;#$%^&amp;*).
           </div>
           <select name="schoolName" [(ngModel)]="register.schoolName" required>
           <option value="" disabled selected>Wybierz szkołę</option>
