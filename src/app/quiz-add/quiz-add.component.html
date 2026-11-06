@@ -31,7 +31,7 @@
           Pole opisu quizu jest wymagane.
         </div>
 
-        <button type="button" class="btn save-quiz" (click)="saveQuiz()">Zapisz quiz</button>
+        <button type="button" class="btn save-quiz" (click)="saveQuiz()">Dodaj pytania</button>
 
         <!-- Sekcja pytań po zapisaniu quizu -->
         <div *ngIf="quizSaved">
@@ -74,7 +74,7 @@
             </div>
 
             <button type="button" class="btn" (click)="addNewQuestion()">Dodaj pytanie</button>
-            <button type="button" class="btn" (click)="addQuestion()">Zakończ</button>
+            <button type="button" class="btn" (click)="addQuestion()">Zapisz quiz</button>
 
           </div>
 
