@@ -33,32 +33,41 @@ export class LoginComponent {
   };
 
   registerError = '';
+  loginError = '';
 
   constructor(private userService: UserServiceService, private router: Router, private userStateService: UserStateService) {}
 
   toggleForms() {
     this.isLoginForm = !this.isLoginForm;
     this.registerError = '';
+    this.loginError = '';
   }
 
   clearRegisterError() {
     this.registerError = '';
   }
 
+  clearLoginError() {
+    this.loginError = '';
+  }
+
   onLogin() {
-    if (this.login.email && this.login.password) {
-      this.userService.loginUser(
-      this.user.email,
-      this.user.password
-      ).subscribe(response => {
-        console.log('Logging in:', response);
-    //  this.userService.getUserByEmail(this.user.email).subscribe(userData => {
-        this.user.email = this.login.email;
-         this.userStateService.setCurrentUser(this.user);
-          this.router.navigate(['/quiz']);
-       });
-      };
+    if (!this.login.email || !this.login.password) {
+      return;
     }
+
+    this.loginError = '';
+    this.userService.loginUser(this.login.email, this.login.password).subscribe({
+      next: (response) => {
+        this.user = response;
+        this.userStateService.setCurrentUser(response);
+        this.router.navigate(['/quiz']);
+      },
+      error: () => {
+        this.loginError = 'Nieprawidłowy e-mail lub hasło.';
+      }
+    });
+  }
 
 
   onRegister() {

@@ -10,14 +10,17 @@
         <form *ngIf="isLoginForm" #loginForm="ngForm" (ngSubmit)="onLogin()" class="form-container">
           <h2>Logowanie</h2>
 
-          <input type="email" placeholder="Twój e-mail" name="email" [(ngModel)]="login.email" required email />
+          <input type="email" placeholder="Twój e-mail" name="email" [(ngModel)]="login.email" (ngModelChange)="clearLoginError()" required email />
           <div *ngIf="loginForm.form.get('email')?.invalid && loginForm.form.get('email')?.touched" class="error">
             Nieprawidłowy e-mail!
           </div>
 
-          <input type="password" placeholder="Twoje hasło" name="password" [(ngModel)]="login.password" required minlength="8" />
+          <input type="password" placeholder="Twoje hasło" name="password" [(ngModel)]="login.password" (ngModelChange)="clearLoginError()" required minlength="8" />
           <div *ngIf="loginForm.form.get('password')?.invalid && loginForm.form.get('password')?.touched" class="error">
             Hasło musi mieć co najmniej 8 znaków!
+          </div>
+          <div *ngIf="loginError" class="error">
+            {{ loginError }}
           </div>
 
           <button class="btn" [disabled]="!loginForm.valid">Zaloguj się</button>
