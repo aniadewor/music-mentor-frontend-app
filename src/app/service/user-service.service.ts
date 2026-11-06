@@ -14,7 +14,7 @@ export class UserServiceService {
     return this.http.post(`${this.baseUrl}/registerUser`, user);
   }
   loginUser (email:string, password:string):Observable<any> {
-    return this.http.post(`${this.baseUrl}/loginUser`, {email, password});
+    return this.http.post(`${this.baseUrl}/loginUser`, {email, password}, { withCredentials: true });
   }
   getUserById (id:number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`)

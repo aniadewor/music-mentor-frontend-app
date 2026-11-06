@@ -59,12 +59,16 @@ export class LoginComponent {
     this.loginError = '';
     this.userService.loginUser(this.login.email, this.login.password).subscribe({
       next: (response) => {
+        if (!response?.email) {
+          this.loginError = 'Błędny login lub hasło';
+          return;
+        }
         this.user = response;
         this.userStateService.setCurrentUser(response);
         this.router.navigate(['/quiz']);
       },
       error: () => {
-        this.loginError = 'Nieprawidłowy e-mail lub hasło.';
+        this.loginError = 'Błędny login lub hasło';
       }
     });
   }
