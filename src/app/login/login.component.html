@@ -38,9 +38,12 @@
             Dozwolone są tylko litery!
           </div>
 
-          <input type="email" placeholder="E-mail" name="email" [(ngModel)]="register.email" required email />
+          <input type="email" placeholder="E-mail" name="email" [(ngModel)]="register.email" (ngModelChange)="clearRegisterError()" required email />
           <div *ngIf="registerForm.form.get('email')?.invalid && registerForm.form.get('email')?.touched" class="error">
             Nieprawidłowy e-mail!
+          </div>
+          <div *ngIf="registerError" class="error">
+            {{ registerError }}
           </div>
 
           <input type="password" placeholder="Hasło" name="password" [(ngModel)]="register.password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
