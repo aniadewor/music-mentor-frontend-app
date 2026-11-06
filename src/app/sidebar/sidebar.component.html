@@ -19,7 +19,7 @@
       <li *ngIf="user.role === Role.TEACHER"><a routerLink="/quizAdd" routerLinkActive="active">Twórz Quizy</a></li>
       <li><a routerLink="/student-progress" routerLinkActive="active">Postępy Uczniów</a></li>
       <li><a routerLink="/profil">Profil</a></li>
-     <li><a routerLink="/settings" routerLinkActive="active">Ustawienia</a></li>
+     <li *ngIf="user.role === Role.TEACHER"><a routerLink="/settings" routerLinkActive="active">Ustawienia</a></li>
       <li><a href="#">Wyloguj się</a></li>
     </ul>
   </nav>

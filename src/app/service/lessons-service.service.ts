@@ -13,15 +13,6 @@ export class LessonsServiceService {
 
   constructor(private http: HttpClient) { }
 
-
-// createLesson(lesson: any, userId: number, file: any) {
-//   const formData = new FormData();
-//   formData.append('file', file);
-//   formData.append('lesson', lesson);
-//   formData.append('userId', userId.toString());
-
-//   return this.http.post(`${this.baseUrl}/createLesson`, formData, { withCredentials: true });
-// }
 createLesson(lesson: any, userId: number, file: File): Observable<Lesson> {
     const form = new FormData();
     form.append('file', file); // nazwa musi się zgadzać z @RequestParam/@RequestPart("file")

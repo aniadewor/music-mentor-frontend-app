@@ -13,67 +13,96 @@ html, body {
   overflow: hidden;
 }
 
-/* 2. Główny biały panel z quizem */
-.quiz-container {
-  background: #FFFFFF;
-  width: 90%;
-  max-width: 720px;
-  padding: 48px 40px;
-  border-radius: 16px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+/* === TŁO KOMPONENTU === */
+:host {
+  display: block;
+  padding: 30px 14px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #004080, #0074D9);
+  font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
 }
 
-/* 3. Nagłówek i opis */
-.quiz-container h1 {
+/* === DASHBOARD CONTAINER (główne pudełko) === */
+.dashboard-container {
+  display: flex;
+  width: 1250px;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  min-height: 90vh;
+  margin: 30px auto;
+}
+
+/* === PRAWA STRONA === */
+.main-content {
+  flex: 1;
+  padding: 50px;
+  text-align: center;
+}
+
+/* ------------------------- */
+/*       NAGŁÓWEK QUIZU      */
+/* ------------------------- */
+header h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 32px;
-  font-weight: 600;
   color: #0F2C5B;
-  text-align: center;
+  font-weight: 700;
   margin-bottom: 8px;
 }
 
-.quiz-container p.description {
+header .description {
   font-size: 18px;
   color: #52606D;
-  text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 
-/* 4. Pudełko z pytaniem */
-.quiz-container .question-box {
+/* ------------------------- */
+/*      KARTA Z PYTANIEM     */
+/* ------------------------- */
+.question-card {
+  width: 90%;
+  max-width: 720px;
+  margin: 0 auto;
   background: #F0F4F8;
-  border-radius: 12px;
-  padding: 32px;
+  border-radius: 16px;
+  padding: 40px 32px;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(13,30,67,0.10);
 }
 
-.quiz-container .question-box h2 {
-  font-size: 20px;
-  font-weight: 600;
+.question-card h2 {
+  font-size: 22px;
+  font-weight: 700;
   color: #0F2C5B;
   margin-bottom: 16px;
 }
 
-.quiz-container .question-box p {
-  font-size: 16px;
+.question-card .question {
+  font-size: 18px;
   color: #242B39;
+  margin-bottom: 26px;
 }
 
-/* 5. Lista opcji */
-.quiz-container .options {
+/* ------------------------- */
+/*        OPCJE ODPOWIEDZI   */
+/* ------------------------- */
+.options {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 24px;
 }
 
-.quiz-container .options label {
+.options label {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #FFFFFF;
+  background: #fff;
   border: 1px solid #D0D7E8;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 14px 18px;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
@@ -81,58 +110,67 @@ html, body {
   color: #242B39;
 }
 
-.quiz-container .options label:hover {
+.options label:hover {
   background: #E8F0FE;
   border-color: #297AD0;
 }
 
-.quiz-container input[type="radio"] {
-  transform: scale(1.2);
+input[type="radio"] {
+  transform: scale(1.3);
   accent-color: #297AD0;
 }
 
-/* 6. Przycisk „Dalej” */
-.quiz-container .actions {
+/* ------------------------- */
+/*          PRZYCISKI        */
+/* ------------------------- */
+.actions {
   margin-top: 32px;
   text-align: right;
 }
 
-.quiz-container .btn {
+.btn {
   padding: 14px 24px;
   background: linear-gradient(135deg, #297AD0, #005BBB);
-  color: #FFFFFF;
+  color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  transition: background 0.2s ease;
+  transition: background 0.2s, transform 0.05s;
 }
 
-.quiz-container .btn:hover {
+.btn:hover {
   background: #0F2C5B;
 }
 
-/* 7. Responsywność */
-@media (max-width: 600px) {
-  .quiz-container {
-    padding: 32px 20px;
-  }
-  .quiz-container .btn {
-    width: 100%;
-  }
+.btn:active {
+  transform: translateY(1px);
 }
 
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ------------------------- */
+/*   KARTA PODSUMOWANIA      */
+/* ------------------------- */
+.result-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 
 .result-card {
   width: min(520px, 92vw);
-  margin: 60px auto;
   background: #fff;
   border-radius: 18px;
   padding: 40px 32px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.2);
   text-align: center;
+  margin: 30px auto;
 }
 
 .result-card h2 {
@@ -148,6 +186,7 @@ html, body {
   margin-bottom: 20px;
 }
 
+/* WYNIK */
 .score-main {
   display: flex;
   justify-content: center;
@@ -156,15 +195,18 @@ html, body {
   color: #0F2C5B;
   margin-bottom: 16px;
 }
+
 .score-main .score {
   font-size: 60px;
   font-weight: 800;
 }
+
 .score-main .of {
   font-size: 20px;
   opacity: 0.7;
 }
 
+/* PROGRESS BAR */
 .progress {
   height: 12px;
   background: #E5EAF2;
@@ -172,11 +214,13 @@ html, body {
   overflow: hidden;
   margin: 12px 0 18px;
 }
+
 .progress .bar {
   height: 100%;
   background: linear-gradient(135deg, #297AD0, #005BBB);
 }
 
+/* PROCENT */
 .percent {
   font-weight: 700;
   font-size: 22px;
@@ -184,42 +228,23 @@ html, body {
   margin-bottom: 24px;
 }
 
-.btn {
-  padding: 12px 22px;
-  background: linear-gradient(135deg, #297AD0, #005BBB);
-  color: #fff;
-  border: 0;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: opacity .2s ease, transform .05s ease;
-}
-.btn:hover { opacity: .95; }
-.btn:active { transform: translateY(1px); }
+/* ------------------------- */
+/*         RESPONSYWNOŚĆ     */
+/* ------------------------- */
+@media (max-width: 900px) {
+  .main-content {
+    padding: 30px 20px;
+  }
 
-/* Styl dla przycisków w quizie */
-.btn {
-  padding: 12px 22px;
-  background: linear-gradient(135deg, #297AD0, #005BBB);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  transition: background 0.2s ease, transform 0.05s ease;
-}
+  .question-card {
+    padding: 28px 22px;
+  }
 
-.btn:hover {
-  background: #0F2C5B;
-}
+  header h1 {
+    font-size: 26px;
+  }
 
-.btn:active {
-  transform: translateY(1px);
-}
-
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  .btn {
+    width: 100%;
+  }
 }

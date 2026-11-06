@@ -1,64 +1,91 @@
-<form #lessonForm="ngForm">
-<!-- NAGŁÓWEK -->
-<h2 class="form-title">Stwórz lekcję</h2>
+<html><body>
+  <div class="dashboard-container">
+  <!-- LEWY PANEL -->
+  <app-sidebar></app-sidebar>
 
-  <label for="title">Tytuł:</label>
-  <input
-    id="title"
-     name="title"
-    [(ngModel)]="lesson.title"
-    required
-    #title="ngModel"
-  />
-  <div *ngIf="title.invalid && title.touched">
-    Tytuł jest wymagany.
-  </div>
+  <!-- PRAWA STRONA -->
+  <main class="main-content">
+    <header>
+      <h1>Twórz lekcje</h1>
+      <p>Dodaj nową lekcję dla wybranej klasy.</p>
+    </header>
 
-  <label for="description">Opis:</label>
-  <textarea
-    style="white-space: pre-wrap;"
-    id="description"
-    name="description"
-    [(ngModel)]="lesson.description"
-    required
-    #description="ngModel"
-  ></textarea>
-  <div *ngIf="description.invalid && description.touched">
-    Opis jest wymagany.
-  </div>
+    <section class="lesson-section">
+      <form #lessonForm="ngForm">
+        <!-- NAGŁÓWEK FORMULARZA -->
+        <h2 class="form-title">Stwórz lekcję</h2>
 
-  <label for="className">Klasa:</label>
-  <input
-    id="className"
-    name="className"
-    [(ngModel)]="lesson.className"
-    required
-    #className="ngModel"
-  />
-  <div *ngIf="className.invalid && className.touched">
-    Klasa jest wymagana.
-  </div>
+        <label for="title">Tytuł:</label>
+        <input
+          id="title"
+          name="title"
+          [(ngModel)]="lesson.title"
+          required
+          #title="ngModel"
+          placeholder="Np. Interwały – wprowadzenie"
+        />
+        <div *ngIf="title.invalid && title.touched">
+          Tytuł jest wymagany.
+        </div>
 
-  <label for="content">Treść:</label>
-  <textarea
-    id="content"
-    name="content"
-    required
-    #content="ngModel"
-    [(ngModel)]="lesson.content" 
-  ></textarea>
-  <markdown [data]="lesson.content"></markdown>
-  <div *ngIf="content.invalid && content.touched">
-    Treść jest wymagana.
-  </div>
+        <label for="description">Opis:</label>
+        <textarea
+          style="white-space: pre-wrap;"
+          id="description"
+          name="description"
+          [(ngModel)]="lesson.description"
+          required
+          #description="ngModel"
+          placeholder="Krótki opis tego, czego dotyczy lekcja."
+        ></textarea>
+        <div *ngIf="description.invalid && description.touched">
+          Opis jest wymagany.
+        </div>
 
-<input type="file" (change)="onFileSelected($event)" />
+        <label for="className">Klasa:</label>
+        <input
+          id="className"
+          name="className"
+          [(ngModel)]="lesson.className"
+          required
+          #className="ngModel"
+          placeholder="Np. 4"
+        />
+        <div *ngIf="className.invalid && className.touched">
+          Klasa jest wymagana.
+        </div>
 
-<div class="button-row">
-  <button class="btn" type="button" (click)="createLesson()" [disabled]="lessonForm.invalid">
-    Zapisz
-  </button>
-  
+        <label for="content">Treść:</label>
+        <textarea
+          id="content"
+          name="content"
+          required
+          #content="ngModel"
+          [(ngModel)]="lesson.content"
+          placeholder="Treść lekcji."
+        ></textarea>
+
+        <markdown [data]="lesson.content"></markdown>
+
+        <div *ngIf="content.invalid && content.touched">
+          Treść jest wymagana.
+        </div>
+
+        <label for="file">Załącz pliki (opcjonalnie):</label>
+        <input id="file" type="file" (change)="onFileSelected($event)" />
+
+        <div class="button-row">
+          <button
+            class="btn"
+            type="button"
+            (click)="createLesson()"
+            [disabled]="lessonForm.invalid"
+          >
+            Zapisz lekcję
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
 </div>
-
-</form>
+</body></html>

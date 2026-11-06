@@ -1,25 +1,56 @@
-<div class="lesson-container">
-  <h1>{{ lesson.title }}</h1>
+<div class="dashboard-container">
+  <!-- LEWY PANEL -->
+  <app-sidebar></app-sidebar>
 
-  <div class="lesson-meta">
-    <span>Autor: {{ lesson.author }}</span>
-    <span>Data: {{ lesson.creationDate | date:'dd.MM.yyyy' }}</span>
-  </div>
+  <!-- PRAWA STRONA -->
+  <main class="main-content">
 
-  <div class="lesson-description">
-    {{ lesson.description }}
-  </div>
+    <header>
+      <h1>Podgląd lekcji</h1>
+      <p>Zobacz treść wybranej lekcji.</p>
+    </header>
 
-  <div class="lesson-content">
-    {{ lesson.content }}
-  </div>
-<!-- 
-  <a [href]="imageUrl" target="_blank">Otwórz plik</a> -->
+    <section class="lesson-section">
+      <div class="lesson-container">
+
+        <!-- TYTUŁ + META + OPIS -->
+        <h2 class="lesson-title">{{ lesson.title }}</h2>
+
+        <div class="lesson-meta">
+          <span>Autor: {{ lesson.author }}</span>
+          <span>Data: {{ lesson.creationDate | date:'dd.MM.yyyy' }}</span>
+        </div>
+
+        <div class="lesson-description">
+          {{ lesson.description }}
+        </div>
+
+        <!-- DUŻE ZDJĘCIE POD OPISEM -->
+        <div class="lesson-photo-wrapper" *ngIf="photoUrl; else loading">
+          <img
+            [src]="photoUrl"
+            alt="Ilustracja do lekcji"
+            class="lesson-photo-large"
+          />
+        </div>
+
+        <ng-template #loading>
+          <!-- Możesz zostawić tekst lub nic -->
+          <p class="photo-loading">Brak ilustracji dla tej lekcji.</p>
+        </ng-template>
+
+        <!-- TREŚĆ LEKCJI -->
+        <div class="lesson-content">
+          {{ lesson.content }}
+        </div>
+<div class="lesson-back">
+  <button class="btn-back" [routerLink]="['/lesson-list']">
+    Powrót 
+  </button>
 </div>
 
-<div *ngIf="photoUrl; else loading">
-  <img [src]="photoUrl" alt="User photo" class="rounded shadow-md" width="200">
+      </div>
+    </section>
+
+  </main>
 </div>
-<ng-template #loading>
-  <p>Ładowanie zdjęcia...</p>
-</ng-template>

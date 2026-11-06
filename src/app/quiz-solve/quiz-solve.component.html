@@ -6,69 +6,108 @@
   <title>Quiz – Music Mentor</title>
 </head>
 <body>
-  <div class="quiz-container" *ngIf="!showResult">
-    <h1>{{ quizTitle }}</h1>
-    <p class="description">{{ quizDescription }}</p>
+  <div class="dashboard-container">
 
-    <!-- <form *ngIf="questionList && questionList.length > 0 && currentQuestionIndex < questionList.length" -->
-          <!-- (ngSubmit)="next()" #quizForm="ngForm" class="question-box"> -->
+  <!-- LEWY PANEL -->
+  <app-sidebar></app-sidebar>
 
-          <form *ngIf="questionList && questionList.length > 0 && currentQuestionIndex < questionList.length && !showResult"
-      (ngSubmit)="next()" #quizForm="ngForm" class="question-box">
+  <!-- PRAWA STRONA -->
+  <main class="main-content">
 
-      <h2>Pytanie {{ currentQuestionIndex + 1 }} z {{ questionList.length }}</h2>
-      <p class="question">{{ questionList[currentQuestionIndex].questionTitle }}</p>
+    <!-- ======================= -->
+    <!-- Widok PYTAŃ -->
+    <!-- ======================= -->
+    <section *ngIf="!showResult" class="quiz-section">
 
-      <div class="options">
-        <label>
-          <input type="radio" name="answer1" [(ngModel)]="selectedOption"
-                 value="answer1" required />
-          {{ questionList[currentQuestionIndex].answer1 }}
-        </label>
-        <label>
-          <input type="radio" name="answer2" [(ngModel)]="selectedOption"
-                 value="answer2" required />
-          {{ questionList[currentQuestionIndex].answer2 }}
-        </label>
-        <label>
-          <input type="radio" name="answer3" [(ngModel)]="selectedOption"
-                 value="answer3" required />
-          {{ questionList[currentQuestionIndex].answer3 }}
-        </label>
-        <label>
-          <input type="radio" name="answer4" [(ngModel)]="selectedOption"
-                 value="answer4" required />
-          {{ questionList[currentQuestionIndex].answer4 }}
-        </label>
+      <header>
+        <h1>{{ quizTitle }}</h1>
+        <p class="description">{{ quizDescription }}</p>
+      </header>
+
+      <form
+        *ngIf="questionList && questionList.length > 0 && currentQuestionIndex < questionList.length"
+        (ngSubmit)="next()"
+        #quizForm="ngForm"
+        class="question-card"
+      >
+        <h2>Pytanie {{ currentQuestionIndex + 1 }} z {{ questionList.length }}</h2>
+
+        <p class="question">
+          {{ questionList[currentQuestionIndex].questionTitle }}
+        </p>
+
+        <div class="options">
+          <label>
+            <input type="radio" name="answer"
+                   [(ngModel)]="selectedOption" value="answer1" required />
+            {{ questionList[currentQuestionIndex].answer1 }}
+          </label>
+
+          <label>
+            <input type="radio" name="answer"
+                   [(ngModel)]="selectedOption" value="answer2" required />
+            {{ questionList[currentQuestionIndex].answer2 }}
+          </label>
+
+          <label>
+            <input type="radio" name="answer"
+                   [(ngModel)]="selectedOption" value="answer3" required />
+            {{ questionList[currentQuestionIndex].answer3 }}
+          </label>
+
+          <label>
+            <input type="radio" name="answer"
+                   [(ngModel)]="selectedOption" value="answer4" required />
+            {{ questionList[currentQuestionIndex].answer4 }}
+          </label>
+        </div>
+
+        <!-- PRZYCISKI -->
+        <div class="actions" *ngIf="currentQuestionIndex + 1 < questionList.length">
+          <button class="btn" type="submit" [disabled]="!selectedOption">Dalej</button>
+        </div>
+
+        <div class="actions" *ngIf="currentQuestionIndex + 1 == questionList.length">
+          <button class="btn" type="submit" (click)="saveQuizAnswer()" [disabled]="!selectedOption">
+            Zakończ
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+
+    <!-- ======================= -->
+    <!-- Widok PODSUMOWANIA -->
+    <!-- ======================= -->
+    <section *ngIf="showResult" class="result-section">
+      <div class="result-card">
+        <h2>{{ quizTitle }}</h2>
+
+        <p class="description">{{ quizDescription }}</p>
+
+        <div class="score-main">
+          <span class="score">{{ scoreSum }}</span>
+          <span class="of">/ {{ quizScore }}</span>
+        </div>
+
+        <div class="progress">
+          <div class="bar" [style.width.%]="(scoreSum / quizScore) * 100"></div>
+        </div>
+
+        <p class="percent">
+          {{ ((scoreSum / quizScore) * 100) | number:'1.0-0' }}%
+        </p>
+
+        <button class="btn" [routerLink]="['/quiz-list']">
+          Powrót
+        </button>
       </div>
+    </section>
 
-      <div *ngIf="currentQuestionIndex + 1 < questionList.length" class="actions">
-        <button class="btn" type="submit" [disabled]="!selectedOption">Dalej</button>
-      </div>
+  </main>
 
-      <div *ngIf="currentQuestionIndex + 1 == questionList.length" class="actions">
-        <button class="btn" (click)="saveQuizAnswer()" type="submit" [disabled]="!selectedOption">Zakończ</button>
-      </div>
-    </form>
-  </div>
-
-<!-- OKNO PODSUMOWANIA QUIZU -->
-<div class="result-card" *ngIf="showResult">
-  <h2>{{ quizTitle }}</h2>
-  <p class="description">{{ quizDescription }}</p>
-
-  <div class="score-main">
-    <span class="score">{{ scoreSum }}</span>
-    <span class="of">/ {{ quizScore }}</span>
-  </div>
-
-  <div class="progress">
-    <div class="bar" [style.width.%]="(scoreSum / quizScore) * 100"></div>
-  </div>
-
-  <p class="percent">{{ ((scoreSum / quizScore) * 100) | number:'1.0-0' }}%</p>
-
-  <button class="btn" type="button" [routerLink]="['/quiz-list']">Powrót</button>
 </div>
+
 </body>
 </html>
