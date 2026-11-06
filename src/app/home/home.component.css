@@ -1,0 +1,105 @@
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #004080, #0074D9);
+  font-family: 'Nunito', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  width: 900px;
+  max-width: 90%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  align-items: stretch;
+  height: 600px;
+}
+
+.left {
+  flex: 1;
+  background: #004174;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+  text-align: center;
+}
+
+.left h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.right {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 350px;
+}
+
+.home-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home-content h2 {
+  margin-bottom: 10px;
+  color: #004174;
+}
+
+.home-content p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.btn {
+  padding: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, #297AD0, #005BBB);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #005BBB, #003F88);
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left, .right {
+    width: 100%;
+    padding: 30px 20px;
+  }
+}

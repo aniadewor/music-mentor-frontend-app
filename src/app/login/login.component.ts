@@ -55,7 +55,6 @@ export class LoginComponent {
     //  this.userService.getUserByEmail(this.user.email).subscribe(userData => {
         this.user.email = this.login.email;
          this.userStateService.setCurrentUser(this.user);
-          alert("Login Successful!");
           this.router.navigate(['/quiz']);
        });
       };
