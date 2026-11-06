@@ -10,13 +10,13 @@
         <form *ngIf="isLoginForm" #loginForm="ngForm" (ngSubmit)="onLogin()" class="form-container">
           <h2>Logowanie</h2>
 
-          <input type="email" placeholder="Twój e-mail" name="userEmail" [(ngModel)]="login.email" required email />
-          <div *ngIf="loginForm.submitted && loginForm.form.get('email')?.invalid" class="error">
+          <input type="email" placeholder="Twój e-mail" name="email" [(ngModel)]="login.email" required email />
+          <div *ngIf="loginForm.form.get('email')?.invalid && loginForm.form.get('email')?.touched" class="error">
             Nieprawidłowy e-mail!
           </div>
 
-          <input type="password" placeholder="Twoje hasło" name="userPassword" [(ngModel)]="login.password" required minlength="8" />
-          <div *ngIf="loginForm.submitted && loginForm.form.get('password')?.invalid" class="error">
+          <input type="password" placeholder="Twoje hasło" name="password" [(ngModel)]="login.password" required minlength="8" />
+          <div *ngIf="loginForm.form.get('password')?.invalid && loginForm.form.get('password')?.touched" class="error">
             Hasło musi mieć co najmniej 8 znaków!
           </div>
 
@@ -29,23 +29,23 @@
           <h2>Rejestracja</h2>
 
           <input type="text" placeholder="Imię" name="name" [(ngModel)]="register.name" required pattern="^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+$" />
-          <div *ngIf="registerForm.submitted && registerForm.form.get('name')?.invalid" class="error">
+          <div *ngIf="registerForm.form.get('name')?.invalid && registerForm.form.get('name')?.touched" class="error">
             Dozwolone są tylko litery!
           </div>
 
           <input type="text" placeholder="Nazwisko" name="lastName" [(ngModel)]="register.lastName" required pattern="^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+$" />
-          <div *ngIf="registerForm.submitted && registerForm.form.get('lastName')?.invalid" class="error">
+          <div *ngIf="registerForm.form.get('lastName')?.invalid && registerForm.form.get('lastName')?.touched" class="error">
             Dozwolone są tylko litery!
           </div>
 
           <input type="email" placeholder="E-mail" name="email" [(ngModel)]="register.email" required email />
-          <div *ngIf="registerForm.submitted && registerForm.form.get('email')?.invalid" class="error">
+          <div *ngIf="registerForm.form.get('email')?.invalid && registerForm.form.get('email')?.touched" class="error">
             Nieprawidłowy e-mail!
           </div>
 
           <input type="password" placeholder="Hasło" name="password" [(ngModel)]="register.password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
-          <div *ngIf="registerForm.submitted && registerForm.form.get('password')?.invalid" class="error">
-            Hasło musi zawierać 8 znaków, 1 wielką literę, 1 cyfrę i 1 znak specjalny!
+          <div *ngIf="registerForm.form.get('password')?.invalid && registerForm.form.get('password')?.touched" class="error">
+            Hasło musi mieć min. 8 znaków, 1 wielką literę, 1 cyfrę i 1 znak specjalny (!@#$%^&*).
           </div>
           <select name="schoolName" [(ngModel)]="register.schoolName" required>
           <option value="" disabled selected>Wybierz szkołę</option>
@@ -56,7 +56,7 @@
           <option value="LO2">II Liceum Ogólnokształcące w Bytomiu</option>
           <!-- dodaj więcej szkół według uznania -->
         </select>
-        <div *ngIf="registerForm.submitted && registerForm.form.get('schoolName')?.invalid" class="error">
+        <div *ngIf="registerForm.form.get('schoolName')?.invalid && registerForm.form.get('schoolName')?.touched" class="error">
           Wybierz nazwę szkoły!
         </div>
 
@@ -65,7 +65,7 @@
             <option [value]="Role.STUDENT">Uczniem</option>
             <option [value]="Role.TEACHER">Nauczycielem</option>
           </select>
-          <div *ngIf="registerForm.submitted && registerForm.form.get('role')?.invalid" class="error">
+          <div *ngIf="registerForm.form.get('role')?.invalid && registerForm.form.get('role')?.touched" class="error">
             Wybierz rolę!
           </div>
 
